@@ -1,1 +1,0 @@
-# pervinzahidli.github.io
