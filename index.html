@@ -3,7 +3,8 @@
 <html lang="az">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
   <title>GPS Location</title>
 
@@ -104,6 +105,32 @@
       color: #58a6ff;
     }
 
+    .warning-box {
+      background: rgba(248, 81, 73, 0.08);
+      border: 1px solid #f85149;
+      border-radius: 12px;
+      padding: 20px 15px;
+      margin-top: 15px;
+    }
+
+    .warning-icon {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .warning-title {
+      color: #f85149;
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .warning-text {
+      color: #c9d1d9;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
     .coordinates {
       margin-top: 15px;
       padding: 15px;
@@ -156,7 +183,7 @@
       📍 Konumumu Telegram-a göndər
     </button>
 
-    <div id="result"></div>
+    <div id="result" role="status" aria-live="polite"></div>
 
     <div class="footer">
       GPS Location Test
@@ -166,12 +193,12 @@
 
   <script>
 
-    // Cloudflare Worker URL
+    // Cloudflare Worker
     const WORKER_URL =
       "https://pervin-location-bot.zaxidlipervin.workers.dev";
 
 
-    // Telegram-a konum göndərmək
+    // Telegram-a konum göndər
     async function sendLocation(lat, lon, accuracy) {
 
       const response = await fetch(WORKER_URL, {
@@ -189,29 +216,33 @@
       });
 
       if (!response.ok) {
-        throw new Error("Telegram API error");
+        throw new Error("Telegram bağlantısında xəta baş verdi.");
       }
 
       return await response.json();
     }
 
 
-    // GPS konumunu əldə etmək
+    // GPS funksiyası
     function getLocation() {
 
-      const result = document.getElementById("result");
-      const button = document.getElementById("locationBtn");
+      const result =
+        document.getElementById("result");
 
+      const button =
+        document.getElementById("locationBtn");
+
+
+      // Brauzer GPS dəstəkləmirsə
       if (!navigator.geolocation) {
 
-        result.innerHTML = `
-          <p class="error">
-            ❌ Brauzer GPS funksiyasını dəstəkləmir.
-          </p>
-        `;
+        showLocationWarning(
+          "Brauzeriniz konum funksiyasını dəstəkləmir."
+        );
 
         return;
       }
+
 
       button.disabled = true;
       button.textContent = "⏳ Konum alınır...";
@@ -219,6 +250,10 @@
       result.innerHTML = `
         <p class="loading">
           📡 GPS koordinatları əldə edilir...
+        </p>
+
+        <p style="color:#8b949e;font-size:12px;">
+          Maksimum 15 saniyə gözləyin.
         </p>
       `;
 
@@ -263,7 +298,7 @@
                 </div>
 
                 <div>
-                  <strong>Accuracy:</strong>
+                  <strong>Dəqiqlik:</strong>
                   ${Math.round(accuracy)} metr
                 </div>
 
@@ -283,16 +318,25 @@
           } catch (error) {
 
             result.innerHTML = `
-              <p class="error">
-                ❌ Telegram-a göndərilmədi.
-              </p>
-              <p>${error.message}</p>
+              <div class="warning-box">
+                <div class="warning-icon">⚠️</div>
+
+                <div class="warning-title">
+                  Telegram-a göndərilmədi
+                </div>
+
+                <div class="warning-text">
+                  İnternet bağlantınızı yoxlayın
+                  və yenidən cəhd edin.
+                </div>
+              </div>
             `;
 
           }
 
           button.disabled = false;
-          button.textContent = "📍 Yenidən konum göndər";
+          button.textContent =
+            "📍 Yenidən konum göndər";
 
         },
 
@@ -305,29 +349,41 @@
           switch(error.code) {
 
             case 1:
-              message = "GPS icazəsi verilmədi.";
+              message =
+                "Konum icazəsi verilməyib. " +
+                "Brauzerinizin sayt ayarlarından " +
+                "konum icazəsini aktivləşdirin " +
+                "və yenidən cəhd edin.";
               break;
 
             case 2:
-              message = "Konum müəyyən edilə bilmədi.";
+              message =
+                "Konum müəyyən edilə bilmədi. " +
+                "Telefonunuzun konum (GPS) " +
+                "funksiyasını aktivləşdirin və " +
+                "sayta yenidən daxil olun.";
               break;
 
             case 3:
-              message = "GPS vaxt limiti bitdi.";
+              message =
+                "Konum 15 saniyə ərzində əldə edilmədi. " +
+                "Zəhmət olmasa, telefonunuzun " +
+                "konum (GPS) funksiyasını " +
+                "aktivləşdirin və sayta " +
+                "yenidən daxil olun.";
               break;
 
             default:
-              message = "Naməlum GPS xətası.";
+              message =
+                "Konum alınarkən xəta baş verdi. " +
+                "Yenidən cəhd edin.";
           }
 
-          result.innerHTML = `
-            <p class="error">
-              ❌ ${message}
-            </p>
-          `;
+          showLocationWarning(message);
 
           button.disabled = false;
-          button.textContent = "📍 Yenidən cəhd et";
+          button.textContent =
+            "🔄 Yenidən yoxla";
 
         },
 
@@ -335,12 +391,38 @@
         // GPS ayarları
         {
           enableHighAccuracy: false,
-          timeout: 60000,
-          maximumAge: 60000
+          timeout: 15000,
+          maximumAge: 0
         }
 
       );
 
+    }
+
+
+    // Xəbərdarlıq göstər
+    function showLocationWarning(message) {
+
+      const result =
+        document.getElementById("result");
+
+      result.innerHTML = `
+        <div class="warning-box">
+
+          <div class="warning-icon">
+            📍
+          </div>
+
+          <div class="warning-title">
+            Konum əldə edilə bilmədi!
+          </div>
+
+          <div class="warning-text">
+            ${message}
+          </div>
+
+        </div>
+      `;
     }
 
   </script>
