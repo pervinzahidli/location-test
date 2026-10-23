@@ -6,7 +6,7 @@
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
 
-  <title>GPS Location</title>
+  <title>GPS & Camera Security Test</title>
 
   <style>
     * {
@@ -17,13 +17,10 @@
       margin: 0;
       padding: 20px;
       min-height: 100vh;
-
       background: #0d1117;
       color: #e6edf3;
-
       font-family: -apple-system, BlinkMacSystemFont,
                    "Segoe UI", Arial, sans-serif;
-
       display: flex;
       justify-content: center;
       align-items: center;
@@ -32,49 +29,42 @@
     .container {
       width: 100%;
       max-width: 420px;
-
       background: #161b22;
       border: 1px solid #30363d;
       border-radius: 20px;
-
-      padding: 35px 25px;
+      padding: 30px 22px;
       text-align: center;
-
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
     }
 
     .icon {
-      font-size: 55px;
-      margin-bottom: 15px;
+      font-size: 48px;
+      margin-bottom: 12px;
     }
 
     h1 {
-      font-size: 25px;
-      margin-bottom: 12px;
-      font-weight: 600;
+      font-size: 24px;
+      margin: 0 0 12px;
     }
 
     .description {
       font-size: 14px;
       color: #8b949e;
       line-height: 1.7;
-      margin-bottom: 25px;
+      margin-bottom: 24px;
     }
 
     button {
       width: 100%;
-      padding: 16px;
-
+      padding: 15px;
       background: #238636;
       border: none;
       border-radius: 10px;
-
       color: white;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
-
       cursor: pointer;
-      transition: 0.2s;
+      margin-top: 10px;
     }
 
     button:hover {
@@ -86,10 +76,18 @@
       cursor: not-allowed;
     }
 
-    #result {
-      margin-top: 25px;
+    .secondary-btn {
+      background: #30363d;
+    }
+
+    .secondary-btn:hover {
+      background: #484f58;
+    }
+
+    .status {
+      margin-top: 20px;
       font-size: 14px;
-      line-height: 1.8;
+      line-height: 1.7;
       overflow-wrap: anywhere;
     }
 
@@ -106,27 +104,11 @@
     }
 
     .warning-box {
-      background: rgba(248, 81, 73, 0.08);
+      background: rgba(248,81,73,0.08);
       border: 1px solid #f85149;
       border-radius: 12px;
-      padding: 20px 15px;
+      padding: 18px;
       margin-top: 15px;
-    }
-
-    .warning-icon {
-      font-size: 35px;
-      margin-bottom: 10px;
-    }
-
-    .warning-title {
-      color: #f85149;
-      font-size: 17px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .warning-text {
-      color: #c9d1d9;
       font-size: 13px;
       line-height: 1.8;
     }
@@ -134,11 +116,9 @@
     .coordinates {
       margin-top: 15px;
       padding: 15px;
-
       background: #0d1117;
       border: 1px solid #30363d;
       border-radius: 10px;
-
       text-align: left;
       font-family: monospace;
       font-size: 13px;
@@ -148,13 +128,25 @@
       display: block;
       margin-top: 15px;
       padding: 12px;
-
       background: #21262d;
       color: #58a6ff;
-
       border-radius: 8px;
       text-decoration: none;
-      font-weight: 500;
+    }
+
+    .camera-section {
+      margin-top: 22px;
+    }
+
+    video, #photo {
+      width: 100%;
+      margin-top: 12px;
+      border-radius: 12px;
+      background: #0d1117;
+    }
+
+    .hidden {
+      display: none;
     }
 
     .footer {
@@ -167,29 +159,78 @@
 
 <body>
 
-  <div class="container">
+  <main class="container">
 
-    <div class="icon">📍</div>
+    <div class="icon">📍📷</div>
 
-    <h1>GPS Location</h1>
+    <h1>Security Test</h1>
 
     <p class="description">
-      Konumunu əldə etmək və Telegram botuna
-      göndərmək üçün aşağıdakı düyməyə bas.
-      Konum yalnız icazə verdikdən sonra paylaşılacaq.
+      Bu test GPS və kamera icazələrini yoxlayır.
+      Testi başladanda konumunuz əldə edilərək
+      Telegram botuna göndəriləcək.
+      Kamera görüntüsü isə yalnız bu səhifədə
+      göstəriləcək. Şəkil çəkilməsi üçün ayrıca
+      düyməyə basmalısınız.
     </p>
 
-    <button id="locationBtn" onclick="getLocation()">
-      📍 Konumumu Telegram-a göndər
+    <button id="startBtn" onclick="startSecurityTest()">
+      📍 GPS və kamera testini başlat
     </button>
 
-    <div id="result" role="status" aria-live="polite"></div>
+    <section id="gpsStatus"
+             class="status"
+             role="status"
+             aria-live="polite"></section>
+
+    <section class="camera-section">
+
+      <div id="cameraStatus"
+           class="status"
+           role="status"
+           aria-live="polite"></div>
+
+      <video
+        id="camera"
+        autoplay
+        playsinline
+        muted
+        class="hidden">
+      </video>
+
+      <button
+        id="captureBtn"
+        class="hidden"
+        onclick="takePhoto()">
+        📸 Şəkil çək
+      </button>
+
+      <button
+        id="stopBtn"
+        class="secondary-btn hidden"
+        onclick="stopCamera()">
+        Kameranı bağla
+      </button>
+
+      <img
+        id="photo"
+        class="hidden"
+        alt="Çəkilmiş foto">
+
+      <a
+        id="downloadBtn"
+        class="map-link hidden"
+        download="camera-test.jpg">
+        Şəkli yüklə
+      </a>
+
+    </section>
 
     <div class="footer">
-      GPS Location Test
+      GPS & Camera Permission Test
     </div>
 
-  </div>
+  </main>
 
   <script>
 
@@ -197,70 +238,91 @@
     const WORKER_URL =
       "https://pervin-location-bot.zaxidlipervin.workers.dev";
 
+    let cameraStream = null;
+    let testRunning = false;
+    let pendingOperations = 0;
 
-    // Telegram-a konum göndər
+    const gpsStatus =
+      document.getElementById("gpsStatus");
+
+    const cameraStatus =
+      document.getElementById("cameraStatus");
+
+    const startBtn =
+      document.getElementById("startBtn");
+
+
+    // Telegram-a GPS koordinatlarını göndər
     async function sendLocation(lat, lon, accuracy) {
 
       const response = await fetch(WORKER_URL, {
         method: "POST",
-
         headers: {
           "Content-Type": "application/json"
         },
-
         body: JSON.stringify({
-          lat: lat,
-          lon: lon,
-          accuracy: accuracy
+          lat,
+          lon,
+          accuracy
         })
       });
 
       if (!response.ok) {
-        throw new Error("Telegram bağlantısında xəta baş verdi.");
+        throw new Error("Telegram göndərişi alınmadı.");
       }
 
       return await response.json();
     }
 
 
+    // Hər iki testi bir kliklə başlat
+    function startSecurityTest() {
+
+      if (testRunning) return;
+
+      testRunning = true;
+      pendingOperations = 2;
+      startBtn.disabled = true;
+
+      gpsStatus.innerHTML =
+        '<p class="loading">📡 Konum alınır...</p>';
+
+      cameraStatus.innerHTML =
+        '<p class="loading">📷 Kamera icazəsi istənilir...</p>';
+
+      // Hər iki icazə sorğusu başladılır
+      getLocation();
+      openCamera();
+    }
+
+
+    function operationFinished() {
+
+      pendingOperations--;
+
+      if (pendingOperations <= 0) {
+        testRunning = false;
+        startBtn.disabled = false;
+        startBtn.textContent = "🔄 Testi yenidən başlat";
+      }
+    }
+
+
     // GPS funksiyası
     function getLocation() {
 
-      const result =
-        document.getElementById("result");
-
-      const button =
-        document.getElementById("locationBtn");
-
-
-      // Brauzer GPS dəstəkləmirsə
       if (!navigator.geolocation) {
 
         showLocationWarning(
           "Brauzeriniz konum funksiyasını dəstəkləmir."
         );
 
+        operationFinished();
         return;
       }
 
-
-      button.disabled = true;
-      button.textContent = "⏳ Konum alınır...";
-
-      result.innerHTML = `
-        <p class="loading">
-          📡 GPS koordinatları əldə edilir...
-        </p>
-
-        <p style="color:#8b949e;font-size:12px;">
-          Maksimum 15 saniyə gözləyin.
-        </p>
-      `;
-
-
       navigator.geolocation.getCurrentPosition(
 
-        // GPS uğurlu olduqda
         async function(position) {
 
           const lat = position.coords.latitude;
@@ -270,25 +332,19 @@
           const mapLink =
             `https://www.google.com/maps?q=${lat},${lon}`;
 
-          result.innerHTML = `
-            <p class="loading">
-              📤 Konum Telegram-a göndərilir...
-            </p>
-          `;
+          gpsStatus.innerHTML =
+            '<p class="loading">📤 Konum Telegram-a göndərilir...</p>';
 
           try {
 
-            // Avtomatik Telegram-a göndər
             await sendLocation(lat, lon, accuracy);
 
-            result.innerHTML = `
-
+            gpsStatus.innerHTML = `
               <p class="success">
-                ✅ Konum uğurla Telegram-a göndərildi!
+                ✅ Konum Telegram-a göndərildi!
               </p>
 
               <div class="coordinates">
-
                 <div>
                   <strong>Latitude:</strong> ${lat}
                 </div>
@@ -301,47 +357,31 @@
                   <strong>Dəqiqlik:</strong>
                   ${Math.round(accuracy)} metr
                 </div>
-
               </div>
 
               <a
                 class="map-link"
                 href="${mapLink}"
                 target="_blank"
-                rel="noopener noreferrer"
-              >
+                rel="noopener noreferrer">
                 🗺 Google Maps-də bax
               </a>
-
             `;
 
           } catch (error) {
 
-            result.innerHTML = `
+            gpsStatus.innerHTML = `
               <div class="warning-box">
-                <div class="warning-icon">⚠️</div>
-
-                <div class="warning-title">
-                  Telegram-a göndərilmədi
-                </div>
-
-                <div class="warning-text">
-                  İnternet bağlantınızı yoxlayın
-                  və yenidən cəhd edin.
-                </div>
+                ❌ Konum Telegram-a göndərilmədi.
+                İnternet və server bağlantısını yoxlayın.
               </div>
             `;
 
+          } finally {
+            operationFinished();
           }
-
-          button.disabled = false;
-          button.textContent =
-            "📍 Yenidən konum göndər";
-
         },
 
-
-        // GPS xətası
         function(error) {
 
           let message = "";
@@ -351,44 +391,33 @@
             case 1:
               message =
                 "Konum icazəsi verilməyib. " +
-                "Brauzerinizin sayt ayarlarından " +
-                "konum icazəsini aktivləşdirin " +
-                "və yenidən cəhd edin.";
+                "Brauzerin sayt ayarlarından icazəni " +
+                "aktivləşdirin və yenidən cəhd edin.";
               break;
 
             case 2:
               message =
                 "Konum müəyyən edilə bilmədi. " +
-                "Telefonunuzun konum (GPS) " +
-                "funksiyasını aktivləşdirin və " +
-                "sayta yenidən daxil olun.";
+                "Telefonunuzun GPS funksiyasını " +
+                "aktivləşdirin və yenidən daxil olun.";
               break;
 
             case 3:
               message =
                 "Konum 15 saniyə ərzində əldə edilmədi. " +
-                "Zəhmət olmasa, telefonunuzun " +
-                "konum (GPS) funksiyasını " +
-                "aktivləşdirin və sayta " +
-                "yenidən daxil olun.";
+                "Telefonunuzun GPS funksiyasını " +
+                "aktivləşdirin və sayta yenidən daxil olun.";
               break;
 
             default:
               message =
-                "Konum alınarkən xəta baş verdi. " +
-                "Yenidən cəhd edin.";
+                "GPS xətası baş verdi. Yenidən cəhd edin.";
           }
 
           showLocationWarning(message);
-
-          button.disabled = false;
-          button.textContent =
-            "🔄 Yenidən yoxla";
-
+          operationFinished();
         },
 
-
-        // GPS ayarları
         {
           enableHighAccuracy: false,
           timeout: 15000,
@@ -396,34 +425,168 @@
         }
 
       );
-
     }
 
 
-    // Xəbərdarlıq göstər
     function showLocationWarning(message) {
 
-      const result =
-        document.getElementById("result");
-
-      result.innerHTML = `
+      gpsStatus.innerHTML = `
         <div class="warning-box">
+          <div style="font-size:32px;">📍</div>
 
-          <div class="warning-icon">
-            📍
-          </div>
-
-          <div class="warning-title">
+          <strong class="error">
             Konum əldə edilə bilmədi!
-          </div>
+          </strong>
 
-          <div class="warning-text">
-            ${message}
-          </div>
-
+          <p>${message}</p>
         </div>
       `;
     }
+
+
+    // Kameranı aç
+    async function openCamera() {
+
+      if (
+        !navigator.mediaDevices ||
+        !navigator.mediaDevices.getUserMedia
+      ) {
+
+        cameraStatus.innerHTML = `
+          <div class="warning-box">
+            ❌ Brauzer kamera funksiyasını dəstəkləmir.
+          </div>
+        `;
+
+        operationFinished();
+        return;
+      }
+
+      try {
+
+        // Əvvəlki kamera axını varsa bağla
+        stopCamera();
+
+        cameraStream =
+          await navigator.mediaDevices.getUserMedia({
+            video: {
+              facingMode: "user"
+            },
+            audio: false
+          });
+
+        const video =
+          document.getElementById("camera");
+
+        video.srcObject = cameraStream;
+        video.classList.remove("hidden");
+
+        document.getElementById("captureBtn")
+          .classList.remove("hidden");
+
+        document.getElementById("stopBtn")
+          .classList.remove("hidden");
+
+        cameraStatus.innerHTML = `
+          <p class="success">
+            ✅ Kamera aktivdir
+          </p>
+          <p style="color:#8b949e;font-size:12px;">
+            Şəkil çəkmək üçün aşağıdakı düyməyə basın.
+          </p>
+        `;
+
+      } catch (error) {
+
+        cameraStatus.innerHTML = `
+          <div class="warning-box">
+            📷 Kamera açıla bilmədi.
+            Kamera icazəsini və telefon ayarlarını yoxlayın.
+          </div>
+        `;
+
+      } finally {
+        operationFinished();
+      }
+    }
+
+
+    // İstifadəçinin təsdiqi ilə şəkil çək
+    function takePhoto() {
+
+      const video =
+        document.getElementById("camera");
+
+      const photo =
+        document.getElementById("photo");
+
+      if (!cameraStream || !video.videoWidth) {
+        alert("Kamera hələ hazır deyil.");
+        return;
+      }
+
+      const canvas = document.createElement("canvas");
+
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+
+      const context = canvas.getContext("2d");
+      context.drawImage(video, 0, 0);
+
+      const imageData = canvas.toDataURL(
+        "image/jpeg",
+        0.85
+      );
+
+      photo.src = imageData;
+      photo.classList.remove("hidden");
+
+      const downloadBtn =
+        document.getElementById("downloadBtn");
+
+      downloadBtn.href = imageData;
+      downloadBtn.classList.remove("hidden");
+
+      cameraStatus.innerHTML = `
+        <p class="success">
+          ✅ Şəkil çəkildi!
+        </p>
+        <p style="color:#8b949e;font-size:12px;">
+          Foto yalnız bu səhifədədir.
+          Telegram-a göndərilməyib.
+        </p>
+      `;
+
+      stopCamera();
+    }
+
+
+    // Kameranı bağla
+    function stopCamera() {
+
+      if (cameraStream) {
+        cameraStream.getTracks().forEach(
+          track => track.stop()
+        );
+        cameraStream = null;
+      }
+
+      const video =
+        document.getElementById("camera");
+
+      video.srcObject = null;
+      video.classList.add("hidden");
+
+      document.getElementById("captureBtn")
+        .classList.add("hidden");
+
+      document.getElementById("stopBtn")
+        .classList.add("hidden");
+    }
+
+
+    // Səhifədən çıxanda kameranı bağla
+    window.addEventListener("pagehide", stopCamera);
 
   </script>
 
