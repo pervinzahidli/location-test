@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GPS Location Test</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #0d1117;
+      color: #e6edf3;
+      font-family: Arial, sans-serif;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 400px;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 18px;
+      padding: 28px;
+      text-align: center;
+    }
+
+    h1 { font-size: 25px; }
+    p { color: #8b949e; line-height: 1.6; }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 12px;
+      background: #238636;
+      color: white;
+      border: none;
+      border-radius: 9px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    #result {
+      margin-top: 22px;
+      overflow-wrap: anywhere;
+      line-height: 1.8;
+    }
+
+    a { color: #58a6ff; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>📍 GPS Location Test</h1>
+
+    <p>
+      Konumunu əldə etmək və istəsən
+      Telegram botuna göndərmək üçün
+      aşağıdakı düymədən istifadə et.
+    </p>
+
+    <button onclick="getLocation()">
+      Konumumu al
+    </button>
+
+    <button id="sendBtn"
+            onclick="sendLocation()"
+            disabled>
+      Telegram-a göndər
+    </button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const WORKER_URL =
+      "https://YOUR-WORKER.workers.dev";
+
+    let locationData = null;
+
+    function getLocation() {
+      const result = document.getElementById("result");
+
+      if (!navigator.geolocation) {
+        result.textContent =
+          "Brauzer GPS funksiyasını dəstəkləmir.";
+        return;
+      }
+
+      result.textContent = "Konum alınır...";
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          const accuracy = position.coords.accuracy;
+
+          locationData = { lat, lon, accuracy };
+
+          const map =
+            `https://www.google.com/maps?q=${lat},${lon}`;
+
+          result.innerHTML = `
+            <p>✅ Konum əldə edildi!</p>
+            <p>Latitude: ${lat}</p>
+            <p>Longitude: ${lon}</p>
+            <p>Dəqiqlik: ${Math.round(accuracy)} m</p>
+            <a href="${map}" target="_blank"
+               rel="noopener noreferrer">
+              Xəritədə bax
+            </a>
+          `;
+
+          document.getElementById("sendBtn")
+            .disabled = false;
+        },
+        (error) => {
+          result.textContent =
+            "Konum alınmadı: " + error.message;
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 15000,
+          maximumAge: 0
+        }
+      );
+    }
+
+    async function sendLocation() {
+      if (!locationData) return;
+
+      const button =
+        document.getElementById("sendBtn");
+
+      button.disabled = true;
+
+      try {
+        const response = await fetch(WORKER_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(locationData)
+        });
+
+        if (!response.ok) {
+          throw new Error("Göndərmə uğursuz oldu");
+        }
+
+        alert("✅ Konum Telegram-a göndərildi!");
+      } catch (error) {
+        alert("❌ " + error.message);
+      } finally {
+        button.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>
