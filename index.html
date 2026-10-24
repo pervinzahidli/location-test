@@ -218,11 +218,17 @@
 
       } catch (error) {
 
-        status.className = "error";
-        status.textContent =
-          "❌ Failed to send. Please try again.";
+  status.className = "error";
 
-      } finally {
+  status.textContent =
+    "❌ Failed to send: " +
+    error.message +
+    " | Origin: " +
+    window.location.origin;
+
+  console.error("Message error:", error);
+
+} finally {
 
         sendBtn.disabled = false;
         sendBtn.textContent = "✉️ Send Message";
