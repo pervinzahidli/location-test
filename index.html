@@ -5,12 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
-  <title>Send a Message</title>
+
+  <title>Private Message Portal</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -18,149 +17,81 @@
       padding: 20px;
       background: #0d1117;
       color: #e6edf3;
-      font-family: -apple-system, BlinkMacSystemFont,
-        "Segoe UI", Arial, sans-serif;
+      font-family: Arial, sans-serif;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
     }
 
     .container {
       width: 100%;
-      max-width: 480px;
+      max-width: 460px;
+      padding: 30px 24px;
       background: #161b22;
       border: 1px solid #30363d;
       border-radius: 20px;
-      padding: 30px 24px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
     }
 
-    .heading {
+    h1 {
+      margin: 0 0 12px;
+      font-size: 25px;
       text-align: center;
     }
 
     .icon {
-      font-size: 46px;
       margin-bottom: 12px;
-    }
-
-    h1 {
-      font-size: 26px;
-      margin: 0 0 12px;
+      font-size: 43px;
+      text-align: center;
     }
 
     .description {
       color: #8b949e;
       font-size: 14px;
       line-height: 1.7;
-      margin-bottom: 25px;
+      text-align: center;
     }
 
     label {
       display: block;
-      margin-bottom: 10px;
+      margin: 20px 0 9px;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: bold;
     }
 
+    input[type="password"],
     textarea {
       width: 100%;
-      min-height: 180px;
       padding: 15px;
-      resize: vertical;
       background: #0d1117;
       border: 1px solid #30363d;
-      border-radius: 12px;
-      color: #e6edf3;
+      border-radius: 10px;
+      color: white;
       font: inherit;
       font-size: 15px;
-      line-height: 1.6;
       outline: none;
     }
 
+    input:focus,
     textarea:focus {
       border-color: #238636;
     }
 
-    textarea::placeholder {
-      color: #6e7681;
-    }
-
-    .counter {
-      text-align: right;
-      color: #8b949e;
-      font-size: 12px;
-      margin-top: 6px;
-    }
-
-    .upload {
-      margin-top: 22px;
-    }
-
-    .upload-area {
-      display: block;
-      padding: 22px 15px;
-      background: #0d1117;
-      border: 2px dashed #30363d;
-      border-radius: 12px;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .upload-area:hover {
-      border-color: #238636;
-    }
-
-    .upload-icon {
-      display: block;
-      font-size: 30px;
-      margin-bottom: 8px;
-    }
-
-    .upload-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: #e6edf3;
-    }
-
-    .upload-hint {
-      display: block;
-      margin-top: 7px;
-      font-size: 12px;
-      color: #8b949e;
-    }
-
-    #fileInput {
-      display: none;
-    }
-
-    .file-info {
-      margin-top: 12px;
-      padding: 12px;
-      background: #21262d;
-      border-radius: 9px;
-      font-size: 13px;
-      overflow-wrap: anywhere;
-    }
-
-    .remove-file {
-      width: auto;
-      padding: 7px 12px;
-      margin-top: 10px;
-      background: #6e2525;
-      font-size: 12px;
+    textarea {
+      min-height: 170px;
+      resize: vertical;
+      line-height: 1.6;
     }
 
     button {
       width: 100%;
-      padding: 16px;
-      margin-top: 20px;
-      background: #238636;
-      color: white;
+      padding: 15px;
+      margin-top: 15px;
       border: none;
       border-radius: 10px;
-      font-size: 16px;
-      font-weight: 600;
+      background: #238636;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
       cursor: pointer;
     }
 
@@ -169,86 +100,147 @@
       cursor: not-allowed;
     }
 
-    .privacy {
-      margin-top: 20px;
-      padding: 12px;
-      background: #0d1117;
-      border-radius: 10px;
-      color: #8b949e;
-      font-size: 12px;
-      line-height: 1.7;
-      text-align: center;
+    .secondary {
+      background: #30363d;
     }
 
-    #status {
-      margin-top: 18px;
+    .upload {
+      display: block;
+      padding: 23px 12px;
+      margin-top: 10px;
+      border: 2px dashed #30363d;
+      border-radius: 12px;
+      background: #0d1117;
       text-align: center;
-      font-size: 14px;
-      line-height: 1.6;
+      cursor: pointer;
+      line-height: 1.8;
+    }
+
+    .upload small {
+      color: #8b949e;
+    }
+
+    #fileInput {
+      display: none;
+    }
+
+    #fileInfo {
+      margin-top: 12px;
+      padding: 12px;
+      background: #21262d;
+      border-radius: 10px;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .counter {
+      margin-top: 7px;
+      color: #8b949e;
+      text-align: right;
+      font-size: 12px;
+    }
+
+    .status {
+      margin-top: 14px;
+      font-size: 13px;
+      text-align: center;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
     }
 
     .success { color: #3fb950; }
     .error { color: #f85149; }
     .loading { color: #58a6ff; }
 
-    .footer {
-      margin-top: 20px;
-      color: #6e7681;
-      font-size: 11px;
+    .privacy {
+      margin-top: 22px;
+      color: #8b949e;
+      font-size: 12px;
       text-align: center;
+      line-height: 1.8;
     }
 
-    .hidden {
-      display: none;
-    }
+    .hidden { display: none; }
   </style>
 </head>
 
 <body>
   <main class="container">
 
-    <div class="heading">
+    <!-- PIN SCREEN -->
+    <section id="pinScreen">
+
+      <div class="icon">🔐</div>
+
+      <h1>Private Message Portal</h1>
+
+      <p class="description">
+        Enter the access PIN to continue.
+      </p>
+
+      <form id="pinForm">
+
+        <label for="accessPin">Access PIN</label>
+
+        <input
+          type="password"
+          id="accessPin"
+          placeholder="Enter your PIN"
+          autocomplete="off"
+          maxlength="128"
+          required
+        >
+
+        <button id="unlockBtn" type="submit">
+          🔓 Unlock
+        </button>
+
+      </form>
+
+      <div id="pinStatus"
+           class="status"
+           role="status"></div>
+
+    </section>
+
+
+    <!-- MESSAGE SCREEN -->
+    <section id="messageScreen" class="hidden">
+
       <div class="icon">💬</div>
 
       <h1>Send a Message</h1>
 
       <p class="description">
-        Have something to say?
         Write your message or attach a file.
       </p>
-    </div>
 
-    <form id="messageForm">
+      <form id="messageForm">
 
-      <label for="message">
-        Your Message
-      </label>
+        <label for="message">
+          Your Message
+        </label>
 
-      <textarea
-        id="message"
-        placeholder="Type your message here..."
-        maxlength="20000"
-      ></textarea>
+        <textarea
+          id="message"
+          maxlength="20000"
+          placeholder="Type your message here..."
+        ></textarea>
 
-      <div class="counter">
-        <span id="charCount">0</span> / 20000
-      </div>
-
-      <div class="upload">
+        <div class="counter">
+          <span id="charCount">0</span> / 20000
+        </div>
 
         <label for="fileInput">
           Attach a File (Optional)
         </label>
 
-        <label for="fileInput" class="upload-area">
-          <span class="upload-icon">📎</span>
-          <span class="upload-title">
-            Choose a file
-          </span>
-          <span class="upload-hint">
-            PDF, DOC, DOCX, TXT, ZIP, JPG, PNG
-            — Max 8 MB
-          </span>
+        <label for="fileInput" class="upload">
+          📎 Choose a file
+          <small>
+            <div>PDF, DOCX, TXT, ZIP, JPG, PNG</div>
+            Maximum 8 MB
+          </small>
         </label>
 
         <input
@@ -257,46 +249,43 @@
           accept=".pdf,.doc,.docx,.txt,.zip,.jpg,.jpeg,.png"
         >
 
-        <div id="fileInfo"
-             class="file-info hidden">
+        <div id="fileInfo" class="hidden">
+          <span id="fileName"></span>
 
-          <div id="fileName"></div>
-          <div id="fileSize"></div>
-
-          <button
-            type="button"
-            class="remove-file"
-            id="removeFile">
+          <button type="button"
+                  class="secondary"
+                  id="removeFile">
             Remove File
           </button>
-
         </div>
 
-      </div>
+        <button type="submit" id="sendBtn">
+          ✉️ Send Message
+        </button>
 
-      <button type="submit" id="sendBtn">
-        ✉️ Send Message
+      </form>
+
+      <div id="messageStatus"
+           class="status"
+           role="status"
+           aria-live="polite"></div>
+
+      <button type="button"
+              id="lockBtn"
+              class="secondary">
+        🔒 Lock
       </button>
 
-    </form>
+      <div class="privacy">
+        Your name is not required.
+        Your message, attachments, IP address,
+        browser information and submission time
+        will be shared with the site owner
+        via Telegram. Technical identifiers
+        may be used to compare submissions.
+      </div>
 
-    <div id="status"
-         role="status"
-         aria-live="polite"></div>
-
-    <div class="privacy">
-      🔒 Your name is not required.
-      Your message, attachment, IP address,
-      browser information and submission time
-      will be shared with the site owner
-      through Telegram.
-      Technical information may be used
-      to recognize repeat submissions.
-    </div>
-
-    <div class="footer">
-      Private message delivery via Telegram
-    </div>
+    </section>
 
   </main>
 
@@ -306,7 +295,28 @@
 
     const MAX_FILE_SIZE = 8 * 1024 * 1024;
 
-    const form =
+    const ALLOWED_FILE =
+      /\.(pdf|doc|docx|txt|zip|jpe?g|png)$/i;
+
+    const pinForm =
+      document.getElementById("pinForm");
+
+    const pinScreen =
+      document.getElementById("pinScreen");
+
+    const messageScreen =
+      document.getElementById("messageScreen");
+
+    const pinInput =
+      document.getElementById("accessPin");
+
+    const pinStatus =
+      document.getElementById("pinStatus");
+
+    const unlockBtn =
+      document.getElementById("unlockBtn");
+
+    const messageForm =
       document.getElementById("messageForm");
 
     const messageInput =
@@ -318,26 +328,76 @@
     const sendBtn =
       document.getElementById("sendBtn");
 
-    const statusBox =
-      document.getElementById("status");
+    const messageStatus =
+      document.getElementById("messageStatus");
 
     const fileInfo =
       document.getElementById("fileInfo");
 
-    const charCount =
-      document.getElementById("charCount");
+    let verifiedPin = "";
 
+    function lockPage() {
+      verifiedPin = "";
+      pinInput.value = "";
+      pinStatus.textContent = "";
+      messageScreen.classList.add("hidden");
+      pinScreen.classList.remove("hidden");
+    }
+
+    // PIN yoxlama
+    pinForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const pin = pinInput.value;
+
+      unlockBtn.disabled = true;
+      pinStatus.className = "status loading";
+      pinStatus.textContent = "Checking PIN...";
+
+      try {
+        const response = await fetch(
+          WORKER_URL + "/verify",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ pin })
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(
+            response.status === 429
+              ? "Too many attempts. Try again later."
+              : "Invalid PIN."
+          );
+        }
+
+        verifiedPin = pin;
+        pinInput.value = "";
+
+        pinScreen.classList.add("hidden");
+        messageScreen.classList.remove("hidden");
+
+        pinStatus.textContent = "";
+
+      } catch (error) {
+        pinStatus.className = "status error";
+        pinStatus.textContent = "❌ " + error.message;
+      } finally {
+        unlockBtn.disabled = false;
+      }
+    });
 
     // Simvol sayğacı
     messageInput.addEventListener("input", () => {
-      charCount.textContent =
-        messageInput.value.length;
+      document.getElementById("charCount")
+        .textContent = messageInput.value.length;
     });
 
-
-    // Fayl seçiləndə
+    // Fayl seçimi
     fileInput.addEventListener("change", () => {
-
       const file = fileInput.files[0];
 
       if (!file) {
@@ -345,84 +405,74 @@
         return;
       }
 
-      if (file.size > MAX_FILE_SIZE) {
-        alert("File size must be 8 MB or less.");
-        fileInput.value = "";
-        fileInfo.classList.add("hidden");
-        return;
-      }
-
-      const allowedExtensions =
-        /\.(pdf|doc|docx|txt|zip|jpe?g|png)$/i;
-
-      if (!allowedExtensions.test(file.name)) {
-        alert("This file type is not supported.");
+      if (
+        file.size > MAX_FILE_SIZE ||
+        !ALLOWED_FILE.test(file.name)
+      ) {
+        alert("Unsupported file or file exceeds 8 MB.");
         fileInput.value = "";
         fileInfo.classList.add("hidden");
         return;
       }
 
       document.getElementById("fileName")
-        .textContent = "📎 " + file.name;
-
-      document.getElementById("fileSize")
         .textContent =
-          (file.size / 1024 / 1024).toFixed(2)
-          + " MB";
+          file.name + " (" +
+          (file.size / 1024 / 1024).toFixed(2) +
+          " MB)";
 
       fileInfo.classList.remove("hidden");
     });
 
-
-    // Seçilmiş faylı sil
     document.getElementById("removeFile")
       .addEventListener("click", () => {
-
         fileInput.value = "";
         fileInfo.classList.add("hidden");
-
       });
 
+    document.getElementById("lockBtn")
+      .addEventListener("click", lockPage);
 
     // Mesaj və fayl göndərişi
-    form.addEventListener("submit", async (event) => {
-
+    messageForm.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       const message = messageInput.value.trim();
       const file = fileInput.files[0];
 
       if (!message && !file) {
-        statusBox.className = "error";
-        statusBox.textContent =
-          "Please enter a message or attach a file.";
+        messageStatus.className = "status error";
+        messageStatus.textContent =
+          "Enter a message or attach a file.";
         return;
       }
 
-      if (file && file.size > MAX_FILE_SIZE) {
-        statusBox.className = "error";
-        statusBox.textContent =
-          "File is too large.";
+      if (file && (
+        file.size > MAX_FILE_SIZE ||
+        !ALLOWED_FILE.test(file.name)
+      )) {
+        messageStatus.className = "status error";
+        messageStatus.textContent =
+          "Unsupported or oversized file.";
         return;
       }
 
       sendBtn.disabled = true;
       sendBtn.textContent = "⏳ Sending...";
 
-      statusBox.className = "loading";
-      statusBox.textContent =
-        "Sending your message and attachments...";
+      messageStatus.className = "status loading";
+      messageStatus.textContent =
+        "Sending to Telegram...";
+
+      const formData = new FormData();
+      formData.append("pin", verifiedPin);
+      formData.append("message", message);
+
+      if (file) {
+        formData.append("file", file, file.name);
+      }
 
       try {
-
-        const formData = new FormData();
-
-        formData.append("message", message);
-
-        if (file) {
-          formData.append("file", file, file.name);
-        }
-
         const response = await fetch(
           WORKER_URL + "/message",
           {
@@ -434,35 +484,34 @@
         const result = await response.json();
 
         if (!response.ok || !result.success) {
+          if (response.status === 401) {
+            lockPage();
+          }
+
           throw new Error(
-            result.error || "Delivery failed"
+            result.error || "Delivery failed."
           );
         }
 
-        statusBox.className = "success";
-        statusBox.textContent =
-          "✅ Successfully sent to Telegram!";
+        messageStatus.className = "status success";
+        messageStatus.textContent =
+          "✅ Message sent successfully!";
 
         messageInput.value = "";
-        charCount.textContent = "0";
-
         fileInput.value = "";
         fileInfo.classList.add("hidden");
 
+        document.getElementById("charCount")
+          .textContent = "0";
+
       } catch (error) {
-
-        statusBox.className = "error";
-        statusBox.textContent =
-          "❌ Failed to send: " + error.message;
-
+        messageStatus.className = "status error";
+        messageStatus.textContent =
+          "❌ " + error.message;
       } finally {
-
         sendBtn.disabled = false;
-        sendBtn.textContent =
-          "✉️ Send Message";
-
+        sendBtn.textContent = "✉️ Send Message";
       }
-
     });
   </script>
 </body>
