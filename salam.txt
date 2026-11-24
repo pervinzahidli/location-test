@@ -1,0 +1,91 @@
+Information Security Management Systems — Examination Questions (Answers)
+Theoretical Questions
+1. Explain the concept of an information security management system (ISMS). Describe in detail its main objectives, its benefits to an organization, and how it differs from individual technical security measures.
+An ISMS is a system of policies, processes and controls that protects information confidentiality, integrity and availability. Its objectives are to manage risk, meet legal requirements and keep the business running. Benefits are fewer incidents, customer trust and certification. Unlike a single technical tool such as a firewall, an ISMS covers people, processes and technology and keeps improving.
+2. Explain the role of ISO/IEC 27001:2022 in an ISMS and the main elements of a system established in accordance with this standard. Summarize the management system requirements in Clauses 4–10. Explain the scope and architecture of an ISMS. Explain why defining the scope is an initial and critical step under this standard, including the practical problems that an incorrectly defined scope may cause.
+ISO/IEC 27001:2022 sets the requirements for building a certifiable ISMS, with a policy, risk process, Statement of Applicability and 93 Annex A controls. Clause 4 is context and scope, 5 leadership, 6 planning and risk, 7 support, 8 operation, 9 performance evaluation (audit, review) and 10 improvement. The scope is the first step because it sets what the ISMS protects. A wrong scope leaves key assets unprotected, wastes money and causes audit failures.
+3. Explain the PDCA (Plan–Do–Check–Act) model. Briefly define each stage and give one example of a real-world activity for each stage in the context of an ISMS.
+PDCA is a four-step cycle for continual improvement. Plan: set policy and plan risk assessment. Do: implement controls and train staff. Check: run internal audits and measure results; Act: fix problems and update the policy.
+4. Explain the security and management problems that an ISMS may face if the PDCA cycle is disrupted or implemented incompletely. Identify at least three consequences and explain in detail how full implementation of PDCA can reduce these problems.
+Without Plan, risks stay unknown and controls are random. Without Do or Check, policies stay on paper and problems are found late. Without Act, mistakes repeat and the ISMS becomes outdated. Full PDCA fixes this by setting priorities, testing controls, finding gaps early and correcting them.
+5. Explain standards, their main characteristics, and their objectives. Also provide a detailed overview of information security standards and other standards.
+A standard is an agreed document that sets rules or guidelines for repeated use. Its features are consensus, voluntary use and regular updates, and its goals are quality, safety and compatibility. Information security standards include ISO/IEC 27001, 27002, 27005 and 27035, NIST SP 800, PCI DSS and CIS Controls. Other standards include ISO 9001 (quality), ISO 22301 (continuity) and ISO 31000 (risk).
+6. What risks may arise if an organization fails to comply with both ISO/IEC 27001 and the information security requirements of national legislation? Identify at least three consequences and explain why standard requirements and legal and regulatory requirements must be considered together when planning an ISMS.
+Non-compliance can bring fines, lawsuits and legal restrictions. It can also cause data leaks, reputation loss and loss of the certificate or customers. ISO 27001 itself requires identifying legal requirements (Clause 4.2, A.5.31). Both must be planned together because the certificate does not guarantee legal compliance.
+7. What is information security governance? Identify three key information security responsibilities of top management and explain how these responsibilities affect the effective operation of an ISMS.
+Information security governance is how management directs and oversees security so it supports business goals. Top management must approve and communicate the policy, provide resources and roles, and carry out management reviews. These actions show real commitment. Without them, staff ignore the rules and the ISMS lacks resources and fails.
+8. Define policy, procedure, and standard, and briefly outline a hierarchy showing their relationships. Use examples to explain how an information security policy, the procedures developed to implement it, and technical standards work together within an organization.
+A policy is a high-level management statement of what and why. A standard sets mandatory minimum requirements, and a procedure gives step-by-step instructions. The hierarchy is Policy, then Standards, then Procedures. Example: the password policy requires protected access, the standard requires 12 characters and MFA, and the reset procedure lists the steps.
+9. Provide an overview of risk and related concepts. Describe the information security risk management process in sequence and explain the purpose of each stage in the context of an ISMS.
+Risk is the chance that a threat exploits a vulnerability and harms an asset (Risk = Likelihood × Impact). The process starts with setting context and scope, then risk assessment to find and rank risks. Next is risk treatment (reduce, avoid, transfer, accept), then management approval of residual risk. The last step is continuous monitoring and communication.
+10. Explain the strategies for treating information security risks and the problems that an inappropriate choice of strategy may cause for an organization.
+The four strategies are reduce (add controls), avoid (stop the activity), transfer (insurance, outsourcing) and accept the risk. Accepting a serious risk can cause major incidents. Over-protecting a small risk wastes money, and transfer does not remove responsibility. The choice should depend on risk level, cost and risk appetite.
+11. Describe an effective risk management process, the controls used in risk management, and the relevant roles and responsibilities.
+An effective process has management support, clear criteria, regular repetition and records such as a risk register. Controls are preventive (access control), detective (monitoring) or corrective (backup restore). Management accepts residual risk, risk owners manage each risk, and the security manager coordinates. IT staff apply controls and users follow the rules.
+12. Explain risk assessment methods in detail, using examples.
+Qualitative methods rate risk as low, medium or high, for example with a 5×5 matrix. Quantitative methods use money, for example ALE = SLE × ARO = 5,000 × 0.4 = AZN 2,000 per year. Semi-quantitative methods use scores, for example Likelihood × Impact = 4 × 4 = 16. Qualitative is fast but subjective, while quantitative is precise but needs data.
+13. What is an information security incident? Explain the difference between an event and an incident. Use examples to explain the classification, types, and prioritization of incidents.
+An event is any observed occurrence that may indicate a problem, such as three wrong passwords. An incident is an event or series of events that harms or may harm information assets, such as a ransomware infection. Incidents are classified by type, for example malware, unauthorized access, data leak or phishing. Priority depends on impact and asset importance, so a customer data leak is critical and one phishing email is low.
+14. Describe the parties involved in information security incident management and their main responsibilities. Provide an overview of Computer Emergency Response Teams (CERTs), including CERTs in Azerbaijan. Explain what a Computer Security Incident Response Team (CSIRT) is and describe its services.
+The parties are management, the response team, IT staff, legal and PR, users and external CERTs. A CERT is a team that responds to and coordinates computer incidents. In Azerbaijan these are CERT.GOV.AZ (government), CERT.AZ and AzScienceCERT (science and education). A CSIRT provides incident response services such as monitoring, response and recovery, vulnerability management and awareness training.
+15. Explain the stages of information security incident management, the relationship of this process to ISO/IEC 27035 and the organization’s ISMS (or Security Operations Center, SOC), and the Traffic Light Protocol (TLP).
+ISO/IEC 27035 has five stages: prepare, detect and report, assess and decide, respond, and learn lessons. This process supports the ISMS incident controls, and the SOC does the daily monitoring and detection. TLP marks how information may be shared. RED means named recipients only, AMBER means the organization and needed clients, GREEN means the community, and CLEAR means public.
+Practical Questions
+1. A company has decided to establish an ISMS in accordance with ISO/IEC 27001:2022 and obtain certification. Using the information in the table below about the company’s main departments and information systems, answer the following questions.
+a) The scope includes the Baku office, the Ganja branch, the call center system (as an interface) and the mailing service and social media accounts. It can exclude marketing design work and the provider's premises, with justification. b) The scope statement must name the locations, the systems and processes, and the interfaces, dependencies and exclusions. c) The outsourced call center must be named as a dependency, and the auditor will check the contract, SLA, audit rights and incident reporting.
+2. You have recently joined an organization, and top management asks you to explain the principles of an ISMS to employees in simple terms. Briefly explain the main ISMS principles in practical terms and describe how they can be applied within the organization.
+The main principles are protecting confidentiality, integrity and availability, managing risk, leadership support and everyone's responsibility. Others are least privilege and continual improvement. In practice, staff use strong passwords and MFA, report suspicious emails and access only the data they need. The company also trains staff and reviews its rules regularly.
+3. The table below presents three different sources of information security requirements: (1) ISO/IEC 27001 – Information security management standard; (2) Requirement of national legislation – Law on the Protection of Personal Data (example); (3) Organization’s internal policy – Information Security Policy.
+Identify and explain the type of document represented by each row in the table.
+ISO/IEC 27001 is an international voluntary standard for building an ISMS. The national law is a mandatory legal requirement, and breaking it brings fines. The Information Security Policy is the company's own internal document that turns both into rules for employees.
+4. An internal review of an organization has identified the following issues: an ISMS has been established in accordance with ISO/IEC 27001, but personal data are retained beyond the legally prescribed period; users have not been clearly informed of the purposes for which their data are processed; the information security policy contains no reference to national legislation.
+a) Keeping data too long and not informing users breach legislation, and the policy missing legal references breaches the standard, so both are affected. b) I would fix the data retention first because it is an ongoing legal violation. c) Two steps: create a register of legal requirements linked to ISMS documents, and update the policy and audit checklist with legal references.
+5. The following situation exists within an organization: an information security policy is formally in place; only the IT department is familiar with the policy; top management has approved the policy but has never addressed employees on the subject.
+a) Top management's role is only formal, because it approved the policy but did not communicate it or show commitment. b) First, the CEO should address all staff about the policy and require training in every department. Second, management should review security results in regular meetings and give resources.
+
+
+
+
+6. The table below lists roles within an organization. Complete the table by assigning at least one information security responsibility to each role.
+Role	Main Information Security Responsibility
+Chief Executive Officer (CEO)	Approve and communicate the policy, allocate resources, run management review and demonstrate commitment
+Person responsible for information security	Run and coordinate the ISMS: risk assessment, audits, training, incident management, reporting to management
+System administrator	Secure configuration, patching, access rights management, backups and log monitoring
+Regular user (employee)	Follow the policy, protect passwords, report phishing and suspicious activity, stay aware
+
+Management leads and funds, the security manager runs the ISMS, administrators apply controls and users follow the rules.
+7. Describe two information security risk scenarios for an organization. For each scenario, identify the threat, vulnerability, impact, and asset.
+Scenario 1: ransomware. Asset: file server. Threat: ransomware sent by phishing. Vulnerability: unpatched systems and no offline backup. Impact: downtime and data loss. Scenario 2: customer data leak. Asset: customer database. Threat: insider or attacker. Vulnerability: weak access control. Impact: fines and loss of trust.
+8. The table below shows likelihood and impact scores for three risks identified in an organization (1 = low; 5 = high): R1 File server failure (2, 5); R2 Employees clicking a phishing link (4, 4); R3 Attempted unauthorized physical access to the office (3, 3).
+a) Risk = Likelihood × Impact, so R1 = 2 × 5 = 10, R2 = 4 × 4 = 16 and R3 = 3 × 3 = 9. b) R2, phishing, has the highest score. A concrete measure is regular phishing training with email filtering and MFA.
+9. Explain the Annualized Loss Expectancy (ALE) method. A company expects a loss of AZN 5,000 from a single server failure, and the estimated frequency of this event is 0.4 occurrences per year. Calculate the ALE for this scenario. Also state and explain the formula used to calculate ALE.
+ALE (Annualized Loss Expectancy) is the expected yearly financial loss from a risk. The formula is ALE = SLE × ARO, where SLE is the loss from one event and ARO is how often it happens per year. Here ALE = AZN 5,000 × 0.4 = AZN 2,000 per year.
+10. Using the data flow shown in the diagram below (Human User → Web Service → SQL Database), answer the following questions in detail.
+a) Which data flow points in Microsoft Threat Modeling Tool carry higher risks?
+b) How could information disclosure and tampering threats arise at these points?
+a) The riskiest points are the flows that cross trust boundaries: user to Web Service over the Internet, and Web Service to SQL Database. b) Information disclosure happens when data is read on unencrypted channels or when responses reveal too much. Tampering happens through man-in-the-middle changes or SQL injection. Use TLS, input validation and parameterized queries.
+11. A password hash is stored instead of the plaintext password, as illustrated by the “Save hash” operation in the diagram below. What protective measures can be applied in this process?
+Store passwords with a strong, slow, salted hash such as bcrypt, Argon2 or PBKDF2, with a unique salt per user. Allow only root to read /etc/shadow and harden the SetUID /bin/passwd program. Monitor file changes with audit logs and integrity checks. Add a strong password policy, MFA and login attempt limits.
+12. Create and explain a risk register table containing five information security risks for a company.
+No.	Asset	Threat	Vulnerability	L	I	Score	Treatment	Owner
+R1	File server	Ransomware	Unpatched system, no offline backup	4	5	20	Reduce	IT manager
+R2	Employee accounts	Phishing	No training, no MFA	4	4	16	Reduce	Security manager
+R3	Customer database	Insider leak	Excessive access rights	3	5	15	Reduce	DB admin
+R4	Cloud call center	Supplier incident	Weak supplier oversight	3	4	12	Transfer/reduce	Supplier manager
+R5	Office (server room)	Unauthorized physical access	Weak entry control	3	3	9	Accept/reduce	Facility manager
+
+A risk register lists each risk with asset, threat, vulnerability, score, treatment and owner. Score = Likelihood (L) × Impact (I). Management updates it regularly and treats the highest risks first.
+13. Construct a 5 × 5 risk matrix for qualitative risk analysis and explain how it is used through two scenarios.
+Likelihood \ Impact	1	2	3	4	5
+5	5	10	15	20	25
+4	4	8	12	16	20
+3	3	6	9	12	15
+2	2	4	6	8	10
+1	1	2	3	4	5
+
+Likelihood is on the rows and impact on the columns, and the score is their product. Levels: 1–4 low, 5–9 medium, 10–14 high, 15–25 critical. Scenario 1: ransomware has likelihood 4 and impact 5, score 20, critical, so treat it at once. Scenario 2: losing a USB with non-sensitive data has 3 × 2 = 6, medium, so monitor it.
+14. An employee receives a suspicious email containing a link from an unfamiliar sender address. The organization has basic incident management procedures in place. Based on this information, answer the following questions.
+a) It is first only an event. It becomes an incident if the employee clicked the link or opened the attachment. b) First, do not click, open or forward the email. Second, report it at once to the security team and keep it as evidence.
+15. The following three events were recorded in an organization during the past week: (1) A user entered an incorrect password three times, and the account was temporarily locked; (2) A suspicious file was detected on an employee’s computer and quarantined by the antivirus software; (3) An attempted unauthorized access to the customer database was recorded; the attempt was unsuccessful.
+Based on the above, answer the following questions in detail.
+a) Event 1 is only an event, because the lock-out control worked. Event 2 is an event first, but becomes a low-priority incident if the file's origin or spread is unclear. Event 3 is an incident, because it is a deliberate attack on a critical database. b) Event 3 needs a ticket most, then Event 2.
